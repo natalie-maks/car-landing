@@ -110,4 +110,35 @@ section#london-section p:after {
   position: absolute;
   bottom: -40px;
   right: -88px;
+}
+
+section#try-section {
+  padding-block: 160px;
+  background: radial-gradient(147.28% 31.87% at 50% 50%, #d7e6ff 0%, #edf4ff 100%);
+  color: #001e50;
+  text-align: center;
+}
+section#try-section p {
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: 52px;
+}
+section#try-section p span {
+  font-weight: 500;
+}
+section#try-section a {
+  display: block;
+  margin: 0 auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-block: 28px;
+  padding-inline: 80px;
+  font-size: 20px;
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+  line-height: 1;
+  border: 1px solid #001e50;
+  border-radius: 20px;
 }/*# sourceMappingURL=style.css.map */
