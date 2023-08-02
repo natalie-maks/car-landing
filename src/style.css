@@ -7,7 +7,6 @@
 body {
   background-color: #edf4ff;
   font-family: "Poppins", sans-serif;
-  padding-inline: 70px;
 }
 
 main {
@@ -16,6 +15,7 @@ main {
 
 section#quote-section {
   margin-block: 200px;
+  padding-inline: 70px;
 }
 section#quote-section div.quote {
   display: grid;
@@ -82,4 +82,32 @@ section#quote-section ul li span:nth-of-type(1) {
 }
 section#quote-section ul li span:nth-of-type(2) {
   font-size: 22px;
+}
+
+section#london-section {
+  padding-block: 140px;
+  background: radial-gradient(70.03% 70.03% at 50% 50%, #00437a 0%, #001e50 100%);
+}
+section#london-section p {
+  font-size: 36px;
+  line-height: 1.5;
+  color: #edf4ff;
+  font-weight: 300;
+  position: relative;
+  text-align: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}
+section#london-section p:before {
+  content: url("/media/quote-mark-white-left.svg");
+  position: absolute;
+  top: -40px;
+  left: -88px;
+}
+section#london-section p:after {
+  content: url("/media/quote-mark-white-right.svg");
+  position: absolute;
+  bottom: -40px;
+  right: -88px;
 }/*# sourceMappingURL=style.css.map */
