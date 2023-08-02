@@ -1,0 +1,104 @@
+$dark-blue: #000d23;
+$blue: #001e50;
+$mid-blue: #00437a;
+$light-blue: #d7e6ff;
+$white: #edf4ff;
+
+@mixin grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 20px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $white;
+  font-family: "Poppins", sans-serif;
+  padding-inline: 70px;
+}
+
+main {
+  margin: 0 auto;
+}
+
+section#quote-section {
+  margin-block: 200px;
+
+  div.quote {
+    @include grid;
+    align-items: center;
+    margin-bottom: 180px;
+
+    div.img-wrapper {
+      grid-column: 1/5;
+      background-color: aqua;
+      position: relative;
+
+      img {
+        width: 130%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    p {
+      grid-column: 5/12;
+
+      font-size: 24px;
+      line-height: 1.5;
+      color: $blue;
+      font-weight: 400;
+      position: relative;
+
+      &:before {
+        content: url("/media/quote-mark-left.svg");
+        position: absolute;
+        top: -24px;
+        left: -80px;
+      }
+      &:after {
+        content: url("/media/quote-mark-right.svg");
+        position: absolute;
+        bottom: -24px;
+        right: -80px;
+      }
+    }
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 32px;
+    list-style: none;
+
+    li {
+      border: 1px solid $blue;
+      border-radius: 20px;
+      padding-block: 28px;
+      padding-left: 24px;
+      line-height: 1;
+
+      span {
+        display: block;
+        color: $dark-blue;
+      }
+
+      span:nth-of-type(1) {
+        opacity: 0.9;
+        font-size: 18px;
+        margin-bottom: 24px;
+      }
+
+      span:nth-of-type(2) {
+        font-size: 22px;
+      }
+    }
+  }
+}
