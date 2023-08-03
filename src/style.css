@@ -7,6 +7,7 @@
 body {
   background-color: #edf4ff;
   font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
 }
 
 main {
@@ -485,4 +486,45 @@ section#meet-section #tools-section div.grid-wrapper div img {
 section#meet-section #tools-section div.grid-wrapper div a {
   line-height: 1.3;
   font-size: 24px;
+}
+
+footer {
+  border-top: 2px solid #001e50;
+  margin-inline: 70px;
+  padding-top: 72px;
+  padding-bottom: 72px;
+  color: #001e50;
+}
+footer .grid-wrapper {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1.2fr 0.7fr;
+  margin-bottom: 72px;
+}
+footer .grid-wrapper h4 {
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 500;
+  margin-bottom: 40px;
+  color: #000d23;
+}
+footer .grid-wrapper li {
+  font-size: 18px;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+footer ul.links-line {
+  font-size: 18px;
+  line-height: 2;
+}
+footer ul.links-line li {
+  display: inline-block;
+}
+footer ul.links-line li::after {
+  content: "|";
+  display: inline-block;
+  padding-left: 12px;
+  padding-right: 10px;
+}
+footer ul.links-line li:last-of-type::after {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

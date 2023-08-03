@@ -19,6 +19,7 @@ $white: #edf4ff;
 body {
   background-color: $white;
   font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
 }
 
 main {
@@ -538,6 +539,56 @@ section#meet-section {
         a {
           line-height: 1.3;
           font-size: 24px;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  border-top: 2px solid $blue;
+  margin-inline: 70px;
+  padding-top: 72px;
+  padding-bottom: 72px;
+  color: $blue;
+
+  .grid-wrapper {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1.2fr 0.7fr;
+    margin-bottom: 72px;
+
+    h4 {
+      font-size: 20px;
+      line-height: 1;
+      font-weight: 500;
+      margin-bottom: 40px;
+      color: $dark-blue;
+    }
+
+    li {
+      font-size: 18px;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+  }
+
+  ul.links-line {
+    font-size: 18px;
+    line-height: 2;
+
+    li {
+      display: inline-block;
+
+      &::after {
+        content: "|";
+        display: inline-block;
+        padding-left: 12px;
+        padding-right: 10px;
+      }
+
+      &:last-of-type {
+        &::after {
+          display: none;
         }
       }
     }
