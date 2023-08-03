@@ -14,16 +14,18 @@ main {
 }
 
 a {
+  color: inherit;
+  text-decoration: none;
+}
+a.button {
   display: block;
   margin: 0 auto;
   width: -moz-fit-content;
   width: fit-content;
   padding-block: 28px;
+  line-height: 1;
   font-size: 20px;
   font-weight: 500;
-  color: inherit;
-  text-decoration: none;
-  line-height: 1;
   border: 1px solid #001e50;
   border-radius: 20px;
   min-width: 360px;
@@ -346,26 +348,25 @@ section#high-spec-section div.text-wrapper p {
   font-size: 24px;
   line-height: 1.5;
 }
-section#high-spec-section #change-section {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  -moz-column-gap: 20px;
-       column-gap: 20px;
-}
 section#high-spec-section #change-section h3 {
-  grid-column: 1/13;
   font-size: 32px;
   line-height: 1.4;
   font-weight: 400;
   margin-bottom: 52px;
   text-align: center;
 }
-section#high-spec-section #change-section img.car {
+section#high-spec-section #change-section div.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}
+section#high-spec-section #change-section div.grid-wrapper img.car {
   grid-column: 4/10;
   width: 100%;
   margin-bottom: 16px;
 }
-section#high-spec-section #change-section p {
+section#high-spec-section #change-section div.grid-wrapper p {
   grid-column: 3/11;
   margin-bottom: 20px;
   display: flex;
@@ -374,14 +375,114 @@ section#high-spec-section #change-section p {
   font-size: 24px;
   line-height: 1.3;
 }
-section#high-spec-section #change-section p span:nth-of-type(2) {
+section#high-spec-section #change-section div.grid-wrapper p span:nth-of-type(2) {
   text-align: right;
 }
-section#high-spec-section #change-section img.slider {
+section#high-spec-section #change-section div.grid-wrapper img.slider {
   grid-column: 3/11;
   width: 100%;
   margin-bottom: 80px;
 }
-section#high-spec-section #change-section a {
-  grid-column: 1/13;
+
+section#ask-section {
+  color: #edf4ff;
+  padding-block: 120px;
+  background: radial-gradient(70.03% 70.03% at 50% 50%, #00437a 0%, #001e50 100%);
+  margin-bottom: 200px;
+}
+section#ask-section p {
+  font-size: 36px;
+  line-height: 1.5;
+  font-weight: 300;
+  text-align: center;
+  padding-bottom: 52px;
+}
+section#ask-section a {
+  border-color: #edf4ff;
+}
+
+section#meet-section {
+  padding-inline: 70px;
+  margin-bottom: 200px;
+  color: #001e50;
+}
+section#meet-section header {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  gap: 40px;
+  margin-bottom: 100px;
+}
+section#meet-section header div {
+  width: 64px;
+  height: 64px;
+  background-color: #001e50;
+}
+section#meet-section header h2 {
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 300;
+}
+section#meet-section header h2 span {
+  font-weight: 500;
+}
+section#meet-section #retailer-section {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  align-items: center;
+  margin-bottom: 160px;
+}
+section#meet-section #retailer-section div.text-wrapper {
+  grid-column: 2/8;
+}
+section#meet-section #retailer-section div.text-wrapper p {
+  font-size: 24px;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+section#meet-section #retailer-section div.text-wrapper a {
+  margin: 0;
+}
+section#meet-section #retailer-section div.img-wrapper {
+  grid-column: 8/13;
+  position: relative;
+}
+section#meet-section #retailer-section div.img-wrapper img {
+  width: 140%;
+  position: absolute;
+  left: 0;
+  top: 40px;
+  transform: translateY(-50%);
+}
+section#meet-section #tools-section h3 {
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 80px;
+}
+section#meet-section #tools-section h3 span {
+  font-weight: 500;
+}
+section#meet-section #tools-section div.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 360px);
+  justify-content: space-between;
+}
+section#meet-section #tools-section div.grid-wrapper div img {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 32px;
+  display: block;
+}
+section#meet-section #tools-section div.grid-wrapper div a {
+  line-height: 1.3;
+  font-size: 24px;
 }/*# sourceMappingURL=style.css.map */
