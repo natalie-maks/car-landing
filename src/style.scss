@@ -25,6 +25,26 @@ main {
   margin: 0 auto;
 }
 
+a {
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
+  padding-block: 28px;
+  font-size: 20px;
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+  line-height: 1;
+  border: 1px solid $blue;
+  border-radius: 20px;
+  min-width: 360px;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
 section#quote-section {
   margin-block: 200px;
   padding-inline: 70px;
@@ -75,7 +95,6 @@ section#quote-section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     column-gap: 32px;
-    list-style: none;
 
     li {
       border: 1px solid $blue;
@@ -147,19 +166,134 @@ section#try-section {
       font-weight: 500;
     }
   }
+}
 
-  a {
-    display: block;
+section#greener-section {
+  color: $blue;
+  padding-inline: 70px;
+  margin-top: 80px;
+  margin-bottom: 160px;
+
+  header {
+    display: flex;
+    align-items: center;
     margin: 0 auto;
     width: fit-content;
-    padding-block: 28px;
-    padding-inline: 80px;
-    font-size: 20px;
-    font-weight: 500;
-    color: inherit;
-    text-decoration: none;
-    line-height: 1;
-    border: 1px solid $blue;
-    border-radius: 20px;
+    gap: 40px;
+    margin-bottom: 120px;
+
+    div {
+      width: 64px;
+      height: 64px;
+      background-color: $blue;
+    }
+
+    h2 {
+      font-size: 36px;
+      line-height: 1.2;
+      font-weight: 300;
+      position: relative;
+
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 32px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  #why-electric {
+    @include grid;
+    margin-bottom: 160px;
+    align-items: center;
+
+    div {
+      grid-column: 2/7;
+      h3 {
+        margin-bottom: 52px;
+      }
+      li {
+        margin-bottom: 44px;
+        display: flex;
+        align-items: center;
+        gap: 44px;
+
+        span.number {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 64px;
+          height: 64px;
+          font-size: 24px;
+          line-height: 1;
+          border-radius: 1000px;
+          border: 1px solid $blue;
+          flex-shrink: 0;
+        }
+
+        span.header {
+          display: block;
+          font-size: 24px;
+          line-height: 1.3;
+          font-weight: 500;
+          margin-bottom: 12px;
+        }
+
+        span.text {
+          display: block;
+          font-size: 18px;
+          line-height: 1.4;
+          color: $dark-blue;
+        }
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+    img {
+      grid-column: 8/13;
+      width: 100%;
+    }
+  }
+
+  #simulate-section {
+    h3 {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    div {
+      display: grid;
+      grid-template-columns: repeat(3, 360px);
+      justify-content: space-between;
+
+      article {
+        img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 20px;
+          margin-bottom: 32px;
+        }
+
+        h4 {
+          font-size: 24px;
+          line-height: 1.3;
+          font-weight: 500;
+        }
+        p {
+          margin-top: 20px;
+          font-size: 18px;
+          line-height: 1.4;
+          margin-bottom: 32px;
+          color: $dark-blue;
+        }
+      }
+    }
   }
 }
