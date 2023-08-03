@@ -69,7 +69,6 @@ section#quote-section {
 
     p {
       grid-column: 5/12;
-
       font-size: 24px;
       line-height: 1.5;
       color: $blue;
@@ -192,7 +191,6 @@ section#greener-section {
       font-size: 36px;
       line-height: 1.2;
       font-weight: 300;
-      position: relative;
 
       span {
         font-weight: 500;
@@ -293,7 +291,137 @@ section#greener-section {
           margin-bottom: 32px;
           color: $dark-blue;
         }
+        a {
+          font-size: 18px;
+        }
       }
+    }
+  }
+}
+
+section#charging-section {
+  @include grid;
+  align-items: center;
+  padding-inline: 70px;
+  color: $white;
+  background: radial-gradient(70.03% 70.03% at 50% 50%, #00437a 0%, #001e50 100%);
+  padding-block: 100px;
+  margin-bottom: 200px;
+
+  div.img-wrapper {
+    grid-column: 1/6;
+    position: relative;
+
+    img {
+      height: 450px;
+      position: absolute;
+      right: 0;
+      top: 100px;
+      transform: translateY(-50%);
+    }
+  }
+
+  div.text-wrapper {
+    grid-column: 6/12;
+  }
+
+  h2 {
+    font-size: 36px;
+    line-height: 1.2;
+    font-weight: 300;
+    margin-bottom: 40px;
+
+    span {
+      font-weight: 500;
+    }
+  }
+
+  p {
+    font-size: 24px;
+    line-height: 1.3;
+    font-weight: 300;
+  }
+}
+
+section#high-spec-section {
+  margin-bottom: 200px;
+
+  color: $blue;
+  header {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: fit-content;
+    gap: 40px;
+    margin-bottom: 80px;
+
+    div {
+      width: 64px;
+      height: 64px;
+      background-color: $blue;
+    }
+
+    h2 {
+      font-size: 36px;
+      line-height: 1.2;
+      font-weight: 300;
+
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+  div.text-wrapper {
+    @include grid;
+    padding-inline: 70px;
+    margin-bottom: 120px;
+
+    p {
+      grid-column: 2/12;
+      font-size: 24px;
+      line-height: 1.5;
+    }
+  }
+
+  #change-section {
+    @include grid;
+
+    h3 {
+      grid-column: 1/13;
+      font-size: 32px;
+      line-height: 1.4;
+      font-weight: 400;
+      margin-bottom: 52px;
+      text-align: center;
+    }
+
+    img.car {
+      grid-column: 4/10;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    p {
+      grid-column: 3/11;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 24px;
+      line-height: 1.3;
+
+      span:nth-of-type(2) {
+        text-align: right;
+      }
+    }
+
+    img.slider {
+      grid-column: 3/11;
+      width: 100%;
+      margin-bottom: 80px;
+    }
+    a {
+      grid-column: 1/13;
     }
   }
 }
