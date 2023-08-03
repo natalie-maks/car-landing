@@ -206,6 +206,75 @@ section#quote-section ul li span:nth-of-type(2) {
   font-size: 22px;
 }
 
+section#electrifying-section {
+  color: #001e50;
+  padding-bottom: 200px;
+}
+section#electrifying-section header {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  gap: 40px;
+  margin-bottom: 120px;
+}
+section#electrifying-section header div {
+  width: 64px;
+  height: 64px;
+  background-color: #001e50;
+}
+section#electrifying-section header h2 {
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 300;
+}
+section#electrifying-section header h2 span {
+  font-weight: 500;
+}
+section#electrifying-section .grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  padding-inline: 70px;
+}
+section#electrifying-section .grid-wrapper .grid-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 100px;
+}
+section#electrifying-section .grid-wrapper .grid-item:last-of-type {
+  margin-bottom: 0px;
+}
+section#electrifying-section .grid-wrapper .grid-item-1 {
+  grid-column: 3/10;
+}
+section#electrifying-section .grid-wrapper .grid-item-2 {
+  grid-column: 5/12;
+}
+section#electrifying-section .grid-wrapper .grid-item-3 {
+  grid-column: 4/11;
+}
+section#electrifying-section .grid-wrapper h3 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+section#electrifying-section .grid-wrapper p {
+  font-size: 18px;
+  line-height: 1.4;
+  color: #000d23;
+}
+section#electrifying-section .grid-wrapper .number {
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 56px;
+  opacity: 0.7;
+  margin-right: 44px;
+}
+
 section#london-section {
   padding-block: 140px;
   background: radial-gradient(70.03% 70.03% at 50% 50%, #00437a 0%, #001e50 100%);
