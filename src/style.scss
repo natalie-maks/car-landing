@@ -4,7 +4,23 @@ $mid-blue: #00437a;
 $light-blue: #d7e6ff;
 $white: #edf4ff;
 
+@mixin padding {
+  @media (min-width: 1024px) {
+    padding-inline: 70px;
+  }
+
+  @media (min-width: 1920px) {
+    padding-inline: 10%;
+  }
+
+  @media (min-width: 2200px) {
+    padding-inline: 15%;
+  }
+}
+
 @mixin grid {
+  @include padding;
+
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: 20px;
@@ -24,7 +40,24 @@ $white: #edf4ff;
 
   @media (min-width: 1200px) {
     gap: 0;
+    justify-content: space-evenly;
+    margin-inline: 0px;
+    padding-inline: 0;
+  }
+
+  @media (min-width: 1340px) {
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1600px) {
+    max-width: 1280px;
     justify-content: space-around;
+  }
+  @media (min-width: 1920px) {
+    grid-template-columns: repeat(3, 400px);
+    max-width: 1400px;
   }
 }
 
@@ -356,6 +389,7 @@ section#london-section {
 
 section#try-section {
   padding-block: 160px;
+  margin-bottom: 80px;
   background: radial-gradient(147.28% 31.87% at 50% 50%, #d7e6ff 0%, #edf4ff 100%);
   text-align: center;
   padding-inline: 20px;
@@ -369,7 +403,6 @@ section#try-section {
 section#greener-section {
   @include header;
   padding-inline: 20px;
-  margin-top: 80px;
   margin-bottom: 160px;
 
   h3 {
@@ -558,7 +591,7 @@ section#ask-section {
     line-height: 1.5;
     font-weight: 300;
     text-align: center;
-    padding-bottom: 52px;
+    margin-bottom: 52px;
   }
 
   a {
@@ -822,7 +855,6 @@ footer {
   section#hero {
     div.grid-wrapper {
       @include grid;
-      padding-inline: 70px;
 
       img.discover {
         display: block;
@@ -871,7 +903,7 @@ footer {
   }
 
   section#quote-section {
-    padding-inline: 70px;
+    padding-inline: 0px;
 
     div.quote {
       @include grid;
@@ -895,6 +927,10 @@ footer {
         grid-column: 6/12;
         margin: 0;
       }
+    }
+
+    ul {
+      @include padding;
     }
   }
 
@@ -927,7 +963,6 @@ footer {
 
   section#charging-section {
     @include grid;
-    padding-inline: 70px;
     margin-bottom: 200px;
 
     div.img-wrapper {
@@ -1001,7 +1036,7 @@ footer {
           height: 340px;
           position: absolute;
           left: 0;
-          top: 40px;
+          top: 0;
           transform: translateY(-50%);
         }
       }
@@ -1056,7 +1091,6 @@ footer {
 
     .grid-wrapper {
       @include grid;
-      padding-inline: 70px;
 
       .grid-item-1 {
         grid-column: 3/10;
@@ -1076,20 +1110,19 @@ footer {
     padding-inline: 0;
 
     #why-electric {
-      padding-inline: 70px;
-
       div {
         grid-column: 2/7;
       }
 
       img {
         grid-column: 8/13;
+
+        height: 80%;
+        width: auto;
       }
     }
 
     #simulate-section {
-      margin-inline: 70px;
-
       h3 {
         text-align: center;
         margin-bottom: 80px;
@@ -1114,7 +1147,6 @@ footer {
 
     div.text-wrapper {
       @include grid;
-      padding-inline: 70px;
 
       p {
         grid-column: 2/12;
@@ -1123,7 +1155,7 @@ footer {
   }
 
   section#meet-section {
-    padding-inline: 70px;
+    padding-inline: 0;
 
     #retailer-section {
       div.text-wrapper {
@@ -1143,5 +1175,135 @@ footer {
 
   footer {
     margin-inline: 70px;
+  }
+}
+
+@media (min-width: 1920px) {
+  section#hero {
+    div.grid-wrapper {
+      padding-inline: 100px;
+
+      h1 {
+        span.future {
+          font-size: 72px;
+          margin-bottom: 80px;
+        }
+
+        span.egolf {
+          font-size: 56px;
+
+          img.line-3 {
+            right: 10%;
+          }
+        }
+      }
+    }
+  }
+
+  section#quote-section {
+    margin-top: 300px;
+    margin-bottom: 260px;
+
+    div.quote {
+      margin-bottom: 250px;
+
+      p {
+        grid-column: 6/12;
+      }
+    }
+  }
+
+  section#electrifying-section {
+    padding-bottom: 260px;
+  }
+
+  section#london-section {
+    padding-block: 200px;
+  }
+
+  section#try-section {
+    padding-block: 220px;
+    margin-bottom: 100px;
+
+    p {
+      margin-bottom: 56px;
+    }
+  }
+
+  section#greener-section {
+    margin-bottom: 260px;
+
+    #simulate-section {
+      h3 {
+        margin-bottom: 80px;
+      }
+
+      div {
+        article {
+          img {
+            height: 240px;
+          }
+
+          a {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  section#charging-section {
+    margin-bottom: 260px;
+  }
+
+  section#ask-section {
+    padding-block: 160px;
+    margin-bottom: 260px;
+
+    p {
+      margin-bottom: 56px;
+    }
+  }
+
+  section#meet-section {
+    header {
+      margin-bottom: 160px;
+    }
+
+    #retailer-section {
+      div.text-wrapper p {
+        margin-bottom: 60px;
+      }
+      div.img-wrapper img {
+        width: 110%;
+      }
+    }
+  }
+
+  footer {
+    margin-inline: 10%;
+  }
+}
+
+@media (min-width: 2100px) {
+  section#hero {
+    div.grid-wrapper {
+      padding-inline: 100px;
+
+      h1 {
+        span.future {
+          font-size: 92px;
+          margin-bottom: 92px;
+        }
+
+        span.egolf {
+          font-size: 72px;
+        }
+      }
+    }
+  }
+
+  footer {
+    margin-inline: 15%;
   }
 }

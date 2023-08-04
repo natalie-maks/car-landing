@@ -279,6 +279,7 @@ section#london-section p:after {
 
 section#try-section {
   padding-block: 160px;
+  margin-bottom: 80px;
   background: radial-gradient(147.28% 31.87% at 50% 50%, #d7e6ff 0%, #edf4ff 100%);
   text-align: center;
   padding-inline: 20px;
@@ -295,7 +296,6 @@ section#try-section p span {
 
 section#greener-section {
   padding-inline: 20px;
-  margin-top: 80px;
   margin-bottom: 160px;
 }
 section#greener-section header {
@@ -399,7 +399,28 @@ section#greener-section #simulate-section div {
 @media (min-width: 1200px) {
   section#greener-section #simulate-section div {
     gap: 0;
+    justify-content: space-evenly;
+    margin-inline: 0px;
+    padding-inline: 0;
+  }
+}
+@media (min-width: 1340px) {
+  section#greener-section #simulate-section div {
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1600px) {
+  section#greener-section #simulate-section div {
+    max-width: 1280px;
     justify-content: space-around;
+  }
+}
+@media (min-width: 1920px) {
+  section#greener-section #simulate-section div {
+    grid-template-columns: repeat(3, 400px);
+    max-width: 1400px;
   }
 }
 section#greener-section #simulate-section div article img {
@@ -539,7 +560,7 @@ section#ask-section p {
   line-height: 1.5;
   font-weight: 300;
   text-align: center;
-  padding-bottom: 52px;
+  margin-bottom: 52px;
 }
 section#ask-section a {
   border-color: #edf4ff;
@@ -623,7 +644,28 @@ section#meet-section #tools-section div.grid-wrapper {
 @media (min-width: 1200px) {
   section#meet-section #tools-section div.grid-wrapper {
     gap: 0;
+    justify-content: space-evenly;
+    margin-inline: 0px;
+    padding-inline: 0;
+  }
+}
+@media (min-width: 1340px) {
+  section#meet-section #tools-section div.grid-wrapper {
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1600px) {
+  section#meet-section #tools-section div.grid-wrapper {
+    max-width: 1280px;
     justify-content: space-around;
+  }
+}
+@media (min-width: 1920px) {
+  section#meet-section #tools-section div.grid-wrapper {
+    grid-template-columns: repeat(3, 400px);
+    max-width: 1400px;
   }
 }
 section#meet-section #tools-section div.grid-wrapper div img {
@@ -803,8 +845,24 @@ footer ul.links-line li:last-of-type::after {
     -moz-column-gap: 20px;
          column-gap: 20px;
     align-items: center;
+  }
+}
+@media (min-width: 1024px) and (min-width: 1024px) {
+  section#hero div.grid-wrapper {
     padding-inline: 70px;
   }
+}
+@media (min-width: 1024px) and (min-width: 1920px) {
+  section#hero div.grid-wrapper {
+    padding-inline: 10%;
+  }
+}
+@media (min-width: 1024px) and (min-width: 2200px) {
+  section#hero div.grid-wrapper {
+    padding-inline: 15%;
+  }
+}
+@media (min-width: 1024px) {
   section#hero div.grid-wrapper img.discover {
     display: block;
     position: absolute;
@@ -841,7 +899,7 @@ footer ul.links-line li:last-of-type::after {
     width: 120%;
   }
   section#quote-section {
-    padding-inline: 70px;
+    padding-inline: 0px;
   }
   section#quote-section div.quote {
     display: grid;
@@ -851,6 +909,23 @@ footer ul.links-line li:last-of-type::after {
     align-items: center;
     margin-bottom: 200px;
   }
+}
+@media (min-width: 1024px) and (min-width: 1024px) {
+  section#quote-section div.quote {
+    padding-inline: 70px;
+  }
+}
+@media (min-width: 1024px) and (min-width: 1920px) {
+  section#quote-section div.quote {
+    padding-inline: 10%;
+  }
+}
+@media (min-width: 1024px) and (min-width: 2200px) {
+  section#quote-section div.quote {
+    padding-inline: 15%;
+  }
+}
+@media (min-width: 1024px) {
   section#quote-section div.quote div.img-wrapper {
     grid-column: 1/6;
     order: -1;
@@ -867,6 +942,23 @@ footer ul.links-line li:last-of-type::after {
     grid-column: 6/12;
     margin: 0;
   }
+}
+@media (min-width: 1024px) and (min-width: 1024px) {
+  section#quote-section ul {
+    padding-inline: 70px;
+  }
+}
+@media (min-width: 1024px) and (min-width: 1920px) {
+  section#quote-section ul {
+    padding-inline: 10%;
+  }
+}
+@media (min-width: 1024px) and (min-width: 2200px) {
+  section#quote-section ul {
+    padding-inline: 15%;
+  }
+}
+@media (min-width: 1024px) {
   section#london-section p {
     width: -moz-fit-content;
     width: fit-content;
@@ -883,6 +975,23 @@ footer ul.links-line li:last-of-type::after {
     align-items: center;
     margin-bottom: 160px;
   }
+}
+@media (min-width: 1024px) and (min-width: 1024px) {
+  section#greener-section #why-electric {
+    padding-inline: 70px;
+  }
+}
+@media (min-width: 1024px) and (min-width: 1920px) {
+  section#greener-section #why-electric {
+    padding-inline: 10%;
+  }
+}
+@media (min-width: 1024px) and (min-width: 2200px) {
+  section#greener-section #why-electric {
+    padding-inline: 15%;
+  }
+}
+@media (min-width: 1024px) {
   section#greener-section #why-electric div {
     margin-bottom: 0;
     grid-column: 1/7;
@@ -896,9 +1005,25 @@ footer ul.links-line li:last-of-type::after {
     -moz-column-gap: 20px;
          column-gap: 20px;
     align-items: center;
-    padding-inline: 70px;
     margin-bottom: 200px;
   }
+}
+@media (min-width: 1024px) and (min-width: 1024px) {
+  section#charging-section {
+    padding-inline: 70px;
+  }
+}
+@media (min-width: 1024px) and (min-width: 1920px) {
+  section#charging-section {
+    padding-inline: 10%;
+  }
+}
+@media (min-width: 1024px) and (min-width: 2200px) {
+  section#charging-section {
+    padding-inline: 15%;
+  }
+}
+@media (min-width: 1024px) {
   section#charging-section div.img-wrapper {
     grid-column: 1/6;
   }
@@ -920,6 +1045,23 @@ footer ul.links-line li:last-of-type::after {
          column-gap: 20px;
     align-items: center;
   }
+}
+@media (min-width: 1024px) and (min-width: 1024px) {
+  section#high-spec-section #change-section div.grid-wrapper {
+    padding-inline: 70px;
+  }
+}
+@media (min-width: 1024px) and (min-width: 1920px) {
+  section#high-spec-section #change-section div.grid-wrapper {
+    padding-inline: 10%;
+  }
+}
+@media (min-width: 1024px) and (min-width: 2200px) {
+  section#high-spec-section #change-section div.grid-wrapper {
+    padding-inline: 15%;
+  }
+}
+@media (min-width: 1024px) {
   section#high-spec-section #change-section div.grid-wrapper img.car {
     grid-column: 4/10;
     margin-bottom: 16px;
@@ -941,6 +1083,23 @@ footer ul.links-line li:last-of-type::after {
     align-items: center;
     margin-bottom: 160px;
   }
+}
+@media (min-width: 1024px) and (min-width: 1024px) {
+  section#meet-section #retailer-section {
+    padding-inline: 70px;
+  }
+}
+@media (min-width: 1024px) and (min-width: 1920px) {
+  section#meet-section #retailer-section {
+    padding-inline: 10%;
+  }
+}
+@media (min-width: 1024px) and (min-width: 2200px) {
+  section#meet-section #retailer-section {
+    padding-inline: 15%;
+  }
+}
+@media (min-width: 1024px) {
   section#meet-section #retailer-section div.text-wrapper {
     grid-column: 1/8;
     margin-bottom: 0px;
@@ -960,7 +1119,7 @@ footer ul.links-line li:last-of-type::after {
     height: 340px;
     position: absolute;
     left: 0;
-    top: 40px;
+    top: 0;
     transform: translateY(-50%);
   }
   footer .grid-wrapper {
@@ -998,8 +1157,24 @@ footer ul.links-line li:last-of-type::after {
     -moz-column-gap: 20px;
          column-gap: 20px;
     align-items: center;
+  }
+}
+@media (min-width: 1200px) and (min-width: 1024px) {
+  section#electrifying-section .grid-wrapper {
     padding-inline: 70px;
   }
+}
+@media (min-width: 1200px) and (min-width: 1920px) {
+  section#electrifying-section .grid-wrapper {
+    padding-inline: 10%;
+  }
+}
+@media (min-width: 1200px) and (min-width: 2200px) {
+  section#electrifying-section .grid-wrapper {
+    padding-inline: 15%;
+  }
+}
+@media (min-width: 1200px) {
   section#electrifying-section .grid-wrapper .grid-item-1 {
     grid-column: 3/10;
   }
@@ -1012,17 +1187,13 @@ footer ul.links-line li:last-of-type::after {
   section#greener-section {
     padding-inline: 0;
   }
-  section#greener-section #why-electric {
-    padding-inline: 70px;
-  }
   section#greener-section #why-electric div {
     grid-column: 2/7;
   }
   section#greener-section #why-electric img {
     grid-column: 8/13;
-  }
-  section#greener-section #simulate-section {
-    margin-inline: 70px;
+    height: 80%;
+    width: auto;
   }
   section#greener-section #simulate-section h3 {
     text-align: center;
@@ -1043,13 +1214,29 @@ footer ul.links-line li:last-of-type::after {
     -moz-column-gap: 20px;
          column-gap: 20px;
     align-items: center;
+  }
+}
+@media (min-width: 1200px) and (min-width: 1024px) {
+  section#high-spec-section div.text-wrapper {
     padding-inline: 70px;
   }
+}
+@media (min-width: 1200px) and (min-width: 1920px) {
+  section#high-spec-section div.text-wrapper {
+    padding-inline: 10%;
+  }
+}
+@media (min-width: 1200px) and (min-width: 2200px) {
+  section#high-spec-section div.text-wrapper {
+    padding-inline: 15%;
+  }
+}
+@media (min-width: 1200px) {
   section#high-spec-section div.text-wrapper p {
     grid-column: 2/12;
   }
   section#meet-section {
-    padding-inline: 70px;
+    padding-inline: 0;
   }
   section#meet-section #retailer-section div.text-wrapper {
     grid-column: 2/8;
@@ -1063,5 +1250,92 @@ footer ul.links-line li:last-of-type::after {
   }
   footer {
     margin-inline: 70px;
+  }
+}
+@media (min-width: 1920px) {
+  section#hero div.grid-wrapper {
+    padding-inline: 100px;
+  }
+  section#hero div.grid-wrapper h1 span.future {
+    font-size: 72px;
+    margin-bottom: 80px;
+  }
+  section#hero div.grid-wrapper h1 span.egolf {
+    font-size: 56px;
+  }
+  section#hero div.grid-wrapper h1 span.egolf img.line-3 {
+    right: 10%;
+  }
+  section#quote-section {
+    margin-top: 300px;
+    margin-bottom: 260px;
+  }
+  section#quote-section div.quote {
+    margin-bottom: 250px;
+  }
+  section#quote-section div.quote p {
+    grid-column: 6/12;
+  }
+  section#electrifying-section {
+    padding-bottom: 260px;
+  }
+  section#london-section {
+    padding-block: 200px;
+  }
+  section#try-section {
+    padding-block: 220px;
+    margin-bottom: 100px;
+  }
+  section#try-section p {
+    margin-bottom: 56px;
+  }
+  section#greener-section {
+    margin-bottom: 260px;
+  }
+  section#greener-section #simulate-section h3 {
+    margin-bottom: 80px;
+  }
+  section#greener-section #simulate-section div article img {
+    height: 240px;
+  }
+  section#greener-section #simulate-section div article a {
+    width: 100%;
+  }
+  section#charging-section {
+    margin-bottom: 260px;
+  }
+  section#ask-section {
+    padding-block: 160px;
+    margin-bottom: 260px;
+  }
+  section#ask-section p {
+    margin-bottom: 56px;
+  }
+  section#meet-section header {
+    margin-bottom: 160px;
+  }
+  section#meet-section #retailer-section div.text-wrapper p {
+    margin-bottom: 60px;
+  }
+  section#meet-section #retailer-section div.img-wrapper img {
+    width: 110%;
+  }
+  footer {
+    margin-inline: 10%;
+  }
+}
+@media (min-width: 2100px) {
+  section#hero div.grid-wrapper {
+    padding-inline: 100px;
+  }
+  section#hero div.grid-wrapper h1 span.future {
+    font-size: 92px;
+    margin-bottom: 92px;
+  }
+  section#hero div.grid-wrapper h1 span.egolf {
+    font-size: 72px;
+  }
+  footer {
+    margin-inline: 15%;
   }
 }/*# sourceMappingURL=style.css.map */
