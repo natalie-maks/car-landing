@@ -19,6 +19,7 @@ a {
   color: inherit;
   text-decoration: none;
   transition: color 250ms ease-in-out;
+  position: relative;
 }
 a.button {
   display: block;
@@ -209,12 +210,15 @@ section#electrifying-section header h2 {
   font-size: 36px;
   line-height: 1.2;
   font-weight: 300;
+  opacity: 0;
+  position: relative;
 }
 section#electrifying-section header h2 span {
   font-weight: 500;
 }
 section#electrifying-section header div {
   display: none;
+  opacity: 0;
 }
 @media (min-width: 768px) {
   section#electrifying-section header {
@@ -239,6 +243,10 @@ section#electrifying-section .grid-wrapper .grid-item {
 section#electrifying-section .grid-wrapper .grid-item:last-of-type {
   margin-bottom: 0px;
 }
+section#electrifying-section .grid-wrapper div.text {
+  position: relative;
+  opacity: 0;
+}
 section#electrifying-section .grid-wrapper h3 {
   font-size: 24px;
   font-weight: 500;
@@ -254,15 +262,17 @@ section#electrifying-section .grid-wrapper .number {
   font-size: 60px;
   font-weight: 800;
   line-height: 56px;
-  opacity: 0.7;
+  opacity: 0;
   margin-bottom: 28px;
   width: 100px;
+  position: relative;
 }
 
 section#london-section {
   padding-block: 140px;
   padding-inline: 40px;
   background: radial-gradient(70.03% 70.03% at 50% 50%, #00437a 0%, #001e50 100%);
+  opacity: 0;
 }
 section#london-section p {
   font-size: 36px;
@@ -271,6 +281,7 @@ section#london-section p {
   font-weight: 300;
   position: relative;
   text-align: center;
+  opacity: 0;
 }
 section#london-section p br {
   display: none;
@@ -294,12 +305,15 @@ section#try-section {
   background: radial-gradient(147.28% 31.87% at 50% 50%, #d7e6ff 0%, #edf4ff 100%);
   text-align: center;
   padding-inline: 20px;
+  opacity: 0;
 }
 section#try-section p {
   font-size: 36px;
   line-height: 1.2;
   font-weight: 300;
   margin-bottom: 52px;
+  opacity: 0;
+  position: relative;
 }
 section#try-section p span {
   font-weight: 500;
@@ -320,12 +334,15 @@ section#greener-section header h2 {
   font-size: 36px;
   line-height: 1.2;
   font-weight: 300;
+  opacity: 0;
+  position: relative;
 }
 section#greener-section header h2 span {
   font-weight: 500;
 }
 section#greener-section header div {
   display: none;
+  opacity: 0;
 }
 @media (min-width: 768px) {
   section#greener-section header {
@@ -501,12 +518,15 @@ section#high-spec-section header h2 {
   font-size: 36px;
   line-height: 1.2;
   font-weight: 300;
+  opacity: 0;
+  position: relative;
 }
 section#high-spec-section header h2 span {
   font-weight: 500;
 }
 section#high-spec-section header div {
   display: none;
+  opacity: 0;
 }
 @media (min-width: 768px) {
   section#high-spec-section header {
@@ -598,12 +618,15 @@ section#meet-section header h2 {
   font-size: 36px;
   line-height: 1.2;
   font-weight: 300;
+  opacity: 0;
+  position: relative;
 }
 section#meet-section header h2 span {
   font-weight: 500;
 }
 section#meet-section header div {
   display: none;
+  opacity: 0;
 }
 @media (min-width: 768px) {
   section#meet-section header {
