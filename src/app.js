@@ -8,6 +8,7 @@ const chargingSection = document.getElementById("charging-section");
 const highSection = document.getElementById("high-spec-section");
 const askSection = document.getElementById("ask-section");
 const meetSection = document.getElementById("meet-section");
+const footer = document.querySelector("footer");
 
 function sectionHeaderAnimation(item) {
   let headerObserver = new IntersectionObserver(
@@ -297,21 +298,18 @@ function startGreenerSectionAnimation() {
                 whySectionTl.fromTo(
                   entry.target,
                   { opacity: 0, scale: 0.8 },
-                  { opacity: 1, scale: 1, duration: 0.7, delay: 0.7 }
+                  { opacity: 1, scale: 1, duration: 0.8, delay: 0.7 }
                 );
               } else {
                 whySectionTl.fromTo(
                   entry.target,
                   { opacity: 0, scale: 0.8 },
-                  { opacity: 1, scale: 1, duration: 0.5 }
+                  { opacity: 1, scale: 1, duration: 0.8 }
                 );
               }
               break;
             case "ul":
               startListAnimations();
-              break;
-
-            default:
               break;
           }
 
@@ -334,6 +332,7 @@ function startGreenerSectionAnimation() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             let li = entry.target;
+
             let liTl = gsap.timeline();
 
             liTl
@@ -370,16 +369,14 @@ function startGreenerSectionAnimation() {
           switch (entry.target.localName) {
             case "h3":
               gsap.fromTo(entry.target, { opacity: 0 }, { opacity: 1 });
-
               break;
+
             case "div":
               gridCardsAnimation(
                 document.querySelectorAll(
                   "#greener-section #simulate-section div.grid-wrapper article"
                 )
               );
-              break;
-            default:
               break;
           }
           simulateSectionObserver.unobserve(entry.target);
@@ -457,9 +454,6 @@ function startHighSectionAnimation() {
               break;
             case "div":
               startColorBlockAnimation();
-              break;
-
-            default:
               break;
           }
 
@@ -566,15 +560,19 @@ function startMeetSectionAnimation() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             retailerSectionTl
-              .fromTo("p", { opacity: 0, top: -10 }, { opacity: 1, top: 0, duration: 0.6 })
               .fromTo(
-                "a",
+                "#retailer-section p",
+                { opacity: 0, top: -10 },
+                { opacity: 1, top: 0, duration: 0.6 }
+              )
+              .fromTo(
+                "#retailer-section a",
                 { opacity: 0, top: -10 },
                 { opacity: 1, top: 0, duration: 0.6 },
                 "<=+0.3"
               )
               .fromTo(
-                "img",
+                "#retailer-section img",
                 { opacity: 0, left: 10 },
                 { opacity: 1, left: 0, duration: 0.6 },
                 "<=+0.1"
@@ -585,7 +583,7 @@ function startMeetSectionAnimation() {
         });
       },
       {
-        rootMargin: "-20% 0% -50% 0%",
+        rootMargin: "-30% 0% -50% 0%",
       }
     );
 
@@ -596,9 +594,13 @@ function startMeetSectionAnimation() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             retailerSectionTl
-              .fromTo("p", { opacity: 0, top: -10 }, { opacity: 1, top: 0, duration: 0.6 })
               .fromTo(
-                "a",
+                "#retailer-section p",
+                { opacity: 0, top: -10 },
+                { opacity: 1, top: 0, duration: 0.6 }
+              )
+              .fromTo(
+                "#retailer-section a",
                 { opacity: 0, top: -10 },
                 { opacity: 1, top: 0, duration: 0.6 },
                 "<=+0.3"
@@ -662,6 +664,51 @@ function startMeetSectionAnimation() {
   toolsSectionObserver.observe(document.querySelector("#tools-section div.grid-wrapper"));
 }
 
+function startFooterAnimation() {
+  gsap.fromTo(footer, { opacity: 0 }, { opacity: 1 });
+
+  let columnObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          let column = entry.target;
+
+          gsap.fromTo(column.querySelector("h4"), { opacity: 0 }, { opacity: 1 });
+          gsap.fromTo(
+            column.querySelectorAll("ul li"),
+            { opacity: 0, top: -5 },
+            { opacity: 1, top: 0, stagger: 0.2, delay: 0.5 }
+          );
+
+          columnObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      rootMargin: "-10% 0% -50% 0%",
+    }
+  );
+
+  footer.querySelectorAll(".grid-column").forEach((column) => {
+    columnObserver.observe(column);
+  });
+
+  let linksObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          let list = entry.target;
+
+          gsap.fromTo(list.querySelectorAll("li"), { opacity: 0 }, { opacity: 1, stagger: 0.1 });
+        }
+      });
+    },
+    { threshold: 0.9 }
+  );
+
+  linksObserver.observe(footer.querySelector("ul.links-line"));
+}
+
 function enableAnimations(id) {
   console.log(id);
 
@@ -698,6 +745,7 @@ function enableAnimations(id) {
       break;
 
     default:
+      startFooterAnimation();
       break;
   }
 }
@@ -727,6 +775,7 @@ sectionsObserver.observe(chargingSection);
 sectionsObserver.observe(highSection);
 sectionsObserver.observe(askSection);
 sectionsObserver.observe(meetSection);
+sectionsObserver.observe(footer);
 
 /* 
 let Observer = new IntersectionObserver(

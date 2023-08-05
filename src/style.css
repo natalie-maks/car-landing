@@ -780,6 +780,7 @@ footer {
   margin-inline: 20px;
   padding-top: 72px;
   padding-bottom: 72px;
+  opacity: 0;
 }
 footer .grid-wrapper {
   display: grid;
@@ -795,11 +796,14 @@ footer .grid-wrapper h4 {
   font-weight: 500;
   margin-bottom: 40px;
   color: #000d23;
+  opacity: 0;
 }
 footer .grid-wrapper li {
   font-size: 18px;
   line-height: 1.3;
   margin-bottom: 16px;
+  opacity: 0;
+  position: relative;
 }
 footer ul.links-line {
   font-size: 16px;
@@ -807,6 +811,7 @@ footer ul.links-line {
 }
 footer ul.links-line li {
   display: inline-block;
+  opacity: 0;
 }
 footer ul.links-line li::after {
   content: "|";

@@ -745,6 +745,7 @@ footer {
   margin-inline: 20px;
   padding-top: 72px;
   padding-bottom: 72px;
+  opacity: 0;
 
   .grid-wrapper {
     display: grid;
@@ -759,12 +760,15 @@ footer {
       font-weight: 500;
       margin-bottom: 40px;
       color: $dark-blue;
+      opacity: 0;
     }
 
     li {
       font-size: 18px;
       line-height: 1.3;
       margin-bottom: 16px;
+      opacity: 0;
+      position: relative;
     }
   }
 
@@ -774,6 +778,7 @@ footer {
 
     li {
       display: inline-block;
+      opacity: 0;
 
       &::after {
         content: "|";
