@@ -247,15 +247,34 @@
             want about your car
           </h3>
           <div class="grid-wrapper">
-            <img class="car" src="/media/color-white.png" alt="" />
-            <p>
-              <span>Starting with colour</span>
-              <span
-                >Finishing with<br />
-                interior changes</span
+            <img class="car" id="color-car" src="/media/color-white.png" alt="" />
+            <div class="slider-wrapper">
+              <p>
+                <span class="start">Starting with colour</span>
+                <span class="finish"
+                  >Finishing with<br />
+                  interior changes</span
+                >
+              </p>
+              <svg
+                class="slider"
+                viewBox="0 0 804 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-            </p>
-            <img class="slider" src="/media/slider.svg" alt="" />
+                <circle id="slider-c1" cx="14" cy="14" r="13.5" fill="#001E50" stroke="#001E50" />
+                <circle id="slider-c2" cx="790" cy="14" r="13.5" stroke="#001E50" />
+                <rect
+                  id="slider-line"
+                  x="103"
+                  y="13"
+                  width="598"
+                  height="2"
+                  fill="#001E50"
+                  fill-opacity="0.5"
+                />
+              </svg>
+            </div>
           </div>
 
           <a class="button" href="">Build your own car</a>

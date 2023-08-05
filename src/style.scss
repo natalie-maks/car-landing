@@ -583,6 +583,8 @@ section#high-spec-section {
     p {
       font-size: 24px;
       line-height: 1.5;
+      opacity: 0;
+      position: relative;
     }
   }
 
@@ -593,6 +595,7 @@ section#high-spec-section {
       font-weight: 400;
       margin-bottom: 52px;
       text-align: center;
+      opacity: 0;
 
       br {
         display: none;
@@ -603,6 +606,7 @@ section#high-spec-section {
       img.car {
         width: 100%;
         margin-bottom: 32px;
+        opacity: 0;
       }
 
       p {
@@ -612,16 +616,28 @@ section#high-spec-section {
         align-items: center;
         font-size: 18px;
         line-height: 1.3;
-
+        span {
+          opacity: 0;
+        }
         span:nth-of-type(2) {
           text-align: right;
         }
       }
 
-      img.slider {
+      svg.slider {
         width: 100%;
         margin-bottom: 80px;
+
+        #slider-c1,
+        #slider-c2,
+        #slider-line {
+          opacity: 0;
+        }
       }
+    }
+
+    a {
+      opacity: 0;
     }
   }
 }
@@ -1070,14 +1086,9 @@ footer {
 
         img.car {
           grid-column: 4/10;
-          margin-bottom: 16px;
+          margin-bottom: 24px;
         }
-
-        p {
-          grid-column: 3/11;
-        }
-
-        img.slider {
+        div.slider-wrapper {
           grid-column: 3/11;
         }
       }

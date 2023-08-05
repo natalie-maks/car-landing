@@ -5,6 +5,7 @@ const londonSection = document.getElementById("london-section");
 const trySection = document.getElementById("try-section");
 const greenerSection = document.getElementById("greener-section");
 const chargingSection = document.getElementById("charging-section");
+const highSection = document.getElementById("high-spec-section");
 
 function sectionHeaderAnimation(item) {
   let headerObserver = new IntersectionObserver(
@@ -51,14 +52,14 @@ function gridCardsAnimation(cards) {
             cardsTl.fromTo(
               entry.target,
               { opacity: 0, top: -10 },
-              { opacity: 1, top: 0, duration: 0.6 },
+              { opacity: 1, top: 0, duration: 0.8 },
               "<=+0.2"
             );
           } else if (innerWidth >= 768) {
             cardsTl.fromTo(
               entry.target,
               { opacity: 0, left: 10 },
-              { opacity: 1, left: 0, duration: 0.6 },
+              { opacity: 1, left: 0, duration: 0.8 },
               "<=+0.2"
             );
           } else {
@@ -81,11 +82,7 @@ function gridCardsAnimation(cards) {
 function startHeroSectionAnimation() {
   let heroTl = gsap.timeline();
 
-  heroTl.fromTo(
-    "#hero div.bg-gradient",
-    { opacity: 0 },
-    { opacity: 0.9, duration: 0.3, delay: 0.5 }
-  );
+  heroTl.fromTo("#hero div.bg-gradient", { opacity: 0 }, { opacity: 0.9, duration: 0.6 });
 
   if (innerWidth >= 1024) {
     heroTl.fromTo(
@@ -263,7 +260,7 @@ function startElectrifyingSectionAnimation() {
 function startLondonSectionAnimation() {
   let londonSectionTl = gsap.timeline();
   londonSectionTl
-    .fromTo("#london-section", { opacity: 0 }, { opacity: 1, duration: 0.4 })
+    .fromTo("#london-section", { opacity: 0 }, { opacity: 1, duration: 0.6 })
     .fromTo("#london-section p", { opacity: 0 }, { opacity: 1, duration: 1 });
 }
 
@@ -298,7 +295,7 @@ function startGreenerSectionAnimation() {
                 whySectionTl.fromTo(
                   entry.target,
                   { opacity: 0, scale: 0.8 },
-                  { opacity: 1, scale: 1, duration: 0.5, delay: 0.7 }
+                  { opacity: 1, scale: 1, duration: 0.7, delay: 0.7 }
                 );
               } else {
                 whySectionTl.fromTo(
@@ -402,7 +399,7 @@ function startChargingSectionAnimation() {
   let chargingSectionTl = gsap.timeline();
 
   chargingSectionTl
-    .fromTo("#charging-section", { opacity: 0 }, { opacity: 1, duration: 0.4 })
+    .fromTo("#charging-section", { opacity: 0 }, { opacity: 1, duration: 0.6 })
     .fromTo("#charging-section h2", { opacity: 0, top: -10 }, { opacity: 1, top: 0, duration: 0.6 })
     .fromTo(
       "#charging-section p",
@@ -415,15 +412,131 @@ function startChargingSectionAnimation() {
       "#charging-section img",
       { opacity: 0, right: 10, top: -10 },
       { opacity: 1, right: 0, top: 0, duration: 0.6 },
-      "<="
+      "<=-0.3"
     );
   } else {
     chargingSectionTl.fromTo(
       "#charging-section img",
       { opacity: 0, right: 10, top: 90 },
       { opacity: 1, right: 0, top: 100, duration: 0.6 },
-      "<="
+      "<=-0.3"
     );
+  }
+}
+
+function startHighSectionAnimation() {
+  sectionHeaderAnimation(document.querySelector("#high-spec-section header"));
+
+  let highSectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          switch (entry.target.localName) {
+            case "p":
+              gsap.fromTo(
+                entry.target,
+                { opacity: 0, top: -10 },
+                { opacity: 1, top: 0, duration: 0.6, delay: 0.3 }
+              );
+              break;
+            case "h3":
+              gsap.fromTo(
+                entry.target,
+                { opacity: 0, top: -10 },
+                { opacity: 1, top: 0, duration: 0.6 }
+              );
+              break;
+            case "a":
+              gsap.fromTo(
+                entry.target,
+                { opacity: 0, top: -10 },
+                { opacity: 1, top: 0, duration: 0.6 }
+              );
+              break;
+            case "div":
+              startColorBlockAnimation();
+              break;
+
+            default:
+              break;
+          }
+
+          highSectionObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      rootMargin: "-20% 0% -50% 0%",
+    }
+  );
+
+  highSectionObserver.observe(document.querySelector("#high-spec-section p"));
+  highSectionObserver.observe(document.querySelector("#high-spec-section #change-section h3"));
+  highSectionObserver.observe(
+    document.querySelector("#high-spec-section #change-section .grid-wrapper")
+  );
+  highSectionObserver.observe(document.querySelector("#high-spec-section #change-section a"));
+
+  function startColorBlockAnimation() {
+    let colorBlockTl = gsap.timeline();
+    const sliderWrapper = document.querySelector(
+      "#high-spec-section #change-section .grid-wrapper .slider-wrapper"
+    );
+
+    colorBlockTl.fromTo(
+      "#high-spec-section #change-section .grid-wrapper img",
+      { opacity: 0, scale: 1.1 },
+      { opacity: 1, scale: 1, duration: 0.5 }
+    );
+
+    let sliderObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            colorBlockTl
+              .fromTo(
+                sliderWrapper.querySelector("p span.start"),
+                { opacity: 0 },
+                { opacity: 1, duration: 0.5 }
+              )
+              .fromTo(
+                sliderWrapper.querySelector("#slider-c1"),
+                { opacity: 0 },
+                { opacity: 1, duration: 0.5 },
+                "<="
+              )
+              .fromTo(
+                sliderWrapper.querySelector("#slider-line"),
+                { opacity: 0, clipPath: "polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%)" },
+                {
+                  opacity: 1,
+                  clipPath: "polygon(0% 0%, 100% 0%, 100% 120%, 0% 120%)",
+                  transition: "clip-path",
+                  duration: 0.8,
+                }
+              )
+              .fromTo(
+                sliderWrapper.querySelector("p span.finish"),
+                { opacity: 0 },
+                { opacity: 1, duration: 0.5 }
+              )
+              .fromTo(
+                sliderWrapper.querySelector("#slider-c2"),
+                { opacity: 0 },
+                { opacity: 1, duration: 0.5 },
+                "<="
+              );
+
+            sliderObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "-30% 0% -30% 0%",
+      }
+    );
+
+    sliderObserver.observe(sliderWrapper);
   }
 }
 
@@ -451,6 +564,9 @@ function enableAnimations(id) {
       break;
     case "charging-section":
       startChargingSectionAnimation();
+      break;
+    case "high-spec-section":
+      startHighSectionAnimation();
       break;
 
     default:
@@ -480,6 +596,7 @@ sectionsObserver.observe(londonSection);
 sectionsObserver.observe(trySection);
 sectionsObserver.observe(greenerSection);
 sectionsObserver.observe(chargingSection);
+sectionsObserver.observe(highSection);
 
 /* 
 let Observer = new IntersectionObserver(

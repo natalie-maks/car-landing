@@ -568,6 +568,8 @@ section#high-spec-section div.text-wrapper {
 section#high-spec-section div.text-wrapper p {
   font-size: 24px;
   line-height: 1.5;
+  opacity: 0;
+  position: relative;
 }
 section#high-spec-section #change-section h3 {
   font-size: 32px;
@@ -575,6 +577,7 @@ section#high-spec-section #change-section h3 {
   font-weight: 400;
   margin-bottom: 52px;
   text-align: center;
+  opacity: 0;
 }
 section#high-spec-section #change-section h3 br {
   display: none;
@@ -582,6 +585,7 @@ section#high-spec-section #change-section h3 br {
 section#high-spec-section #change-section div.grid-wrapper img.car {
   width: 100%;
   margin-bottom: 32px;
+  opacity: 0;
 }
 section#high-spec-section #change-section div.grid-wrapper p {
   margin-bottom: 20px;
@@ -591,12 +595,23 @@ section#high-spec-section #change-section div.grid-wrapper p {
   font-size: 18px;
   line-height: 1.3;
 }
+section#high-spec-section #change-section div.grid-wrapper p span {
+  opacity: 0;
+}
 section#high-spec-section #change-section div.grid-wrapper p span:nth-of-type(2) {
   text-align: right;
 }
-section#high-spec-section #change-section div.grid-wrapper img.slider {
+section#high-spec-section #change-section div.grid-wrapper svg.slider {
   width: 100%;
   margin-bottom: 80px;
+}
+section#high-spec-section #change-section div.grid-wrapper svg.slider #slider-c1,
+section#high-spec-section #change-section div.grid-wrapper svg.slider #slider-c2,
+section#high-spec-section #change-section div.grid-wrapper svg.slider #slider-line {
+  opacity: 0;
+}
+section#high-spec-section #change-section a {
+  opacity: 0;
 }
 
 section#ask-section {
@@ -1142,12 +1157,9 @@ footer a:hover {
 @media (min-width: 1024px) {
   section#high-spec-section #change-section div.grid-wrapper img.car {
     grid-column: 4/10;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
   }
-  section#high-spec-section #change-section div.grid-wrapper p {
-    grid-column: 3/11;
-  }
-  section#high-spec-section #change-section div.grid-wrapper img.slider {
+  section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper {
     grid-column: 3/11;
   }
   section#ask-section {
