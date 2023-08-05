@@ -18,6 +18,7 @@ main {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color 250ms ease-in-out;
 }
 a.button {
   display: block;
@@ -30,6 +31,11 @@ a.button {
   border: 1px solid #001e50;
   border-radius: 20px;
   text-align: center;
+  transition: transform 250ms ease-in-out, background-color 250ms ease-in-out;
+}
+a.button:hover {
+  background-color: rgba(0, 30, 80, 0.05);
+  transform: scale(1.05);
 }
 @media (min-width: 768px) {
   a.button {
@@ -55,7 +61,7 @@ section#hero div.bg-gradient {
   position: absolute;
   inset: 0;
   z-index: -1;
-  opacity: 0.9;
+  opacity: 0;
 }
 section#hero div.grid-wrapper {
   display: flex;
@@ -63,7 +69,7 @@ section#hero div.grid-wrapper {
   justify-content: center;
   min-height: calc(100vh - 100px);
   padding-inline: 20px;
-  padding-block: 100px;
+  padding-block: 70px;
   position: relative;
 }
 section#hero div.grid-wrapper img.discover {
@@ -87,12 +93,10 @@ section#hero div.grid-wrapper h1 span.future {
 section#hero div.grid-wrapper h1 span.future img.line-1 {
   position: absolute;
   bottom: -10px;
-  left: 40px;
 }
 section#hero div.grid-wrapper h1 span.future img.line-2 {
   position: absolute;
   bottom: -30px;
-  left: 120px;
 }
 section#hero div.grid-wrapper h1 span.egolf {
   font-size: 36px;
@@ -103,10 +107,11 @@ section#hero div.grid-wrapper h1 span.egolf {
 section#hero div.grid-wrapper h1 span.egolf img.line-3 {
   position: absolute;
   bottom: -20px;
-  right: 20%;
 }
 section#hero div.grid-wrapper img.car {
   width: 100%;
+  opacity: 0;
+  position: relative;
 }
 section#hero header {
   height: 100px;
@@ -114,6 +119,7 @@ section#hero header {
   padding-block: 24px;
   display: flex;
   align-items: center;
+  position: relative;
 }
 section#hero header .logo-wrapper {
   width: 52px;
@@ -138,6 +144,8 @@ section#quote-section div.quote {
 }
 section#quote-section div.quote div.img-wrapper img {
   width: 100%;
+  position: relative;
+  opacity: 0;
 }
 section#quote-section div.quote p {
   font-size: 24px;
@@ -146,6 +154,7 @@ section#quote-section div.quote p {
   margin-inline: 20px;
   margin-bottom: 80px;
   position: relative;
+  opacity: 0;
 }
 section#quote-section div.quote p:before {
   content: url("/media/quote-mark-left.svg");
@@ -169,6 +178,8 @@ section#quote-section ul li {
   padding-block: 28px;
   padding-left: 24px;
   line-height: 1;
+  position: relative;
+  opacity: 0;
 }
 section#quote-section ul li span {
   display: block;
@@ -446,6 +457,9 @@ section#greener-section #simulate-section div article p {
 section#greener-section #simulate-section div article a {
   font-size: 18px;
 }
+section#greener-section #simulate-section div article a:hover {
+  transform: scale(0.98);
+}
 
 section#charging-section {
   padding-inline: 20px;
@@ -565,6 +579,9 @@ section#ask-section p {
 section#ask-section a {
   border-color: #edf4ff;
 }
+section#ask-section a:hover {
+  background-color: rgba(237, 244, 255, 0.1);
+}
 
 section#meet-section {
   padding-inline: 20px;
@@ -681,6 +698,9 @@ section#meet-section #tools-section div.grid-wrapper div a {
   line-height: 1.3;
   font-size: 24px;
 }
+section#meet-section #tools-section div.grid-wrapper div a:hover {
+  color: #068cc4;
+}
 
 footer {
   border-top: 2px solid #001e50;
@@ -724,7 +744,27 @@ footer ul.links-line li::after {
 footer ul.links-line li:last-of-type::after {
   display: none;
 }
+footer a:hover {
+  color: #068cc4;
+}
 
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  30% {
+    transform: translateX(70%);
+  }
+  60% {
+    transform: translateX(0%);
+  }
+  80% {
+    transform: translateX(-35%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
 @media (min-width: 768px) {
   section#hero div.grid-wrapper h1 {
     margin-bottom: 50px;
@@ -864,6 +904,7 @@ footer ul.links-line li:last-of-type::after {
 }
 @media (min-width: 1024px) {
   section#hero div.grid-wrapper img.discover {
+    opacity: 0;
     display: block;
     position: absolute;
     left: 0;
@@ -885,14 +926,9 @@ footer ul.links-line li:last-of-type::after {
   }
   section#hero div.grid-wrapper h1 span.future img.line-1 {
     bottom: -20px;
-    left: 30px;
   }
   section#hero div.grid-wrapper h1 span.future img.line-2 {
     bottom: -45px;
-    left: 70px;
-  }
-  section#hero div.grid-wrapper h1 span.egolf img.line-3 {
-    right: 0px;
   }
   section#hero div.grid-wrapper img.car {
     grid-column: 7/13;
@@ -1262,9 +1298,6 @@ footer ul.links-line li:last-of-type::after {
   }
   section#hero div.grid-wrapper h1 span.egolf {
     font-size: 56px;
-  }
-  section#hero div.grid-wrapper h1 span.egolf img.line-3 {
-    right: 10%;
   }
   section#quote-section {
     margin-top: 300px;

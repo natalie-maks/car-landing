@@ -1,6 +1,6 @@
 $dark-blue: #000d23;
 $blue: #001e50;
-$mid-blue: #00437a;
+$link-blue: #068cc4;
 $light-blue: #d7e6ff;
 $white: #edf4ff;
 
@@ -125,6 +125,7 @@ main {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color 250ms ease-in-out;
 
   &.button {
     display: block;
@@ -137,6 +138,12 @@ a {
     border: 1px solid $blue;
     border-radius: 20px;
     text-align: center;
+    transition: transform 250ms ease-in-out, background-color 250ms ease-in-out;
+
+    &:hover {
+      background-color: rgba($color: $blue, $alpha: 0.05);
+      transform: scale(1.05);
+    }
   }
 
   @media (min-width: 768px) {
@@ -163,7 +170,7 @@ section#hero {
     position: absolute;
     inset: 0;
     z-index: -1;
-    opacity: 0.9;
+    opacity: 0;
   }
 
   div.grid-wrapper {
@@ -172,7 +179,7 @@ section#hero {
     justify-content: center;
     min-height: calc(100vh - 100px);
     padding-inline: 20px;
-    padding-block: 100px;
+    padding-block: 70px;
     position: relative;
 
     img.discover {
@@ -198,13 +205,11 @@ section#hero {
         img.line-1 {
           position: absolute;
           bottom: -10px;
-          left: 40px;
         }
 
         img.line-2 {
           position: absolute;
           bottom: -30px;
-          left: 120px;
         }
       }
 
@@ -217,13 +222,14 @@ section#hero {
         img.line-3 {
           position: absolute;
           bottom: -20px;
-          right: 20%;
         }
       }
     }
 
     img.car {
       width: 100%;
+      opacity: 0;
+      position: relative;
     }
   }
 
@@ -233,6 +239,7 @@ section#hero {
     padding-block: 24px;
     display: flex;
     align-items: center;
+    position: relative;
 
     .logo-wrapper {
       width: 52px;
@@ -260,16 +267,18 @@ section#quote-section {
 
     div.img-wrapper img {
       width: 100%;
+      position: relative;
+      opacity: 0;
     }
 
     p {
       font-size: 24px;
       line-height: 1.5;
       font-weight: 400;
-
       margin-inline: 20px;
       margin-bottom: 80px;
       position: relative;
+      opacity: 0;
 
       &:before {
         content: url("/media/quote-mark-left.svg");
@@ -297,6 +306,8 @@ section#quote-section {
       padding-block: 28px;
       padding-left: 24px;
       line-height: 1;
+      position: relative;
+      opacity: 0;
 
       span {
         display: block;
@@ -494,6 +505,10 @@ section#greener-section {
         }
         a {
           font-size: 18px;
+
+          &:hover {
+            transform: scale(0.98);
+          }
         }
       }
     }
@@ -596,6 +611,10 @@ section#ask-section {
 
   a {
     border-color: $white;
+
+    &:hover {
+      background-color: rgba($color: $white, $alpha: 0.1);
+    }
   }
 }
 
@@ -631,6 +650,7 @@ section#meet-section {
 
     div.grid-wrapper {
       @include grid-card;
+
       div {
         img {
           width: 100%;
@@ -644,6 +664,10 @@ section#meet-section {
         a {
           line-height: 1.3;
           font-size: 24px;
+
+          &:hover {
+            color: $link-blue;
+          }
         }
       }
     }
@@ -698,6 +722,34 @@ footer {
         }
       }
     }
+  }
+
+  a {
+    &:hover {
+      color: $link-blue;
+    }
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+
+  30% {
+    transform: translateX(70%);
+  }
+
+  60% {
+    transform: translateX(0%);
+  }
+
+  80% {
+    transform: translateX(-35%);
+  }
+
+  100% {
+    transform: translateX(0%);
   }
 }
 
@@ -857,6 +909,7 @@ footer {
       @include grid;
 
       img.discover {
+        opacity: 0;
         display: block;
         position: absolute;
         left: 0;
@@ -880,17 +933,10 @@ footer {
 
           img.line-1 {
             bottom: -20px;
-            left: 30px;
           }
 
           img.line-2 {
             bottom: -45px;
-            left: 70px;
-          }
-        }
-        span.egolf {
-          img.line-3 {
-            right: 0px;
           }
         }
       }
@@ -1191,10 +1237,6 @@ footer {
 
         span.egolf {
           font-size: 56px;
-
-          img.line-3 {
-            right: 10%;
-          }
         }
       }
     }
