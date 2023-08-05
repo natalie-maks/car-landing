@@ -4,6 +4,7 @@ const electrifyingSection = document.getElementById("electrifying-section");
 const londonSection = document.getElementById("london-section");
 const trySection = document.getElementById("try-section");
 const greenerSection = document.getElementById("greener-section");
+const chargingSection = document.getElementById("charging-section");
 
 function sectionHeaderAnimation(item) {
   let headerObserver = new IntersectionObserver(
@@ -63,6 +64,7 @@ function gridCardsAnimation(cards) {
           } else {
             cardsTl.fromTo(entry.target, { opacity: 0 }, { opacity: 1, duration: 0.7 });
           }
+          gridCardObserver.unobserve(entry.target);
         }
       });
     },
@@ -82,7 +84,7 @@ function startHeroSectionAnimation() {
   heroTl.fromTo(
     "#hero div.bg-gradient",
     { opacity: 0 },
-    { opacity: 0.9, duration: 0.4, delay: 0.5 }
+    { opacity: 0.9, duration: 0.3, delay: 0.5 }
   );
 
   if (innerWidth >= 1024) {
@@ -381,6 +383,7 @@ function startGreenerSectionAnimation() {
             default:
               break;
           }
+          simulateSectionObserver.unobserve(entry.target);
         }
       });
     },
@@ -393,6 +396,35 @@ function startGreenerSectionAnimation() {
   simulateSectionObserver.observe(
     document.querySelector("#greener-section #simulate-section div.grid-wrapper")
   );
+}
+
+function startChargingSectionAnimation() {
+  let chargingSectionTl = gsap.timeline();
+
+  chargingSectionTl
+    .fromTo("#charging-section", { opacity: 0 }, { opacity: 1, duration: 0.4 })
+    .fromTo("#charging-section h2", { opacity: 0, top: -10 }, { opacity: 1, top: 0, duration: 0.6 })
+    .fromTo(
+      "#charging-section p",
+      { opacity: 0, top: -10 },
+      { opacity: 1, top: 0, duration: 0.6 },
+      "<=+0.3"
+    );
+  if (innerWidth >= 1024) {
+    chargingSectionTl.fromTo(
+      "#charging-section img",
+      { opacity: 0, right: 10, top: -10 },
+      { opacity: 1, right: 0, top: 0, duration: 0.6 },
+      "<="
+    );
+  } else {
+    chargingSectionTl.fromTo(
+      "#charging-section img",
+      { opacity: 0, right: 10, top: 90 },
+      { opacity: 1, right: 0, top: 100, duration: 0.6 },
+      "<="
+    );
+  }
 }
 
 function enableAnimations(id) {
@@ -416,6 +448,9 @@ function enableAnimations(id) {
       break;
     case "greener-section":
       startGreenerSectionAnimation();
+      break;
+    case "charging-section":
+      startChargingSectionAnimation();
       break;
 
     default:
@@ -444,6 +479,7 @@ sectionsObserver.observe(electrifyingSection);
 sectionsObserver.observe(londonSection);
 sectionsObserver.observe(trySection);
 sectionsObserver.observe(greenerSection);
+sectionsObserver.observe(chargingSection);
 
 /* 
 let Observer = new IntersectionObserver(
