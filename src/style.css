@@ -365,6 +365,7 @@ section#greener-section h3 {
   font-size: 32px;
   line-height: 1.4;
   font-weight: 400;
+  opacity: 0;
 }
 section#greener-section #why-electric {
   margin-bottom: 120px;
@@ -389,15 +390,20 @@ section#greener-section #why-electric div li span.number {
   border-radius: 1000px;
   border: 1px solid #001e50;
   margin-bottom: 32px;
+  opacity: 0;
 }
-section#greener-section #why-electric div li span.header {
+section#greener-section #why-electric div li span.text-wrapper {
+  opacity: 0;
+  position: relative;
+}
+section#greener-section #why-electric div li span.text-wrapper span.header {
   display: block;
   font-size: 24px;
   line-height: 1.3;
   font-weight: 500;
   margin-bottom: 12px;
 }
-section#greener-section #why-electric div li span.text {
+section#greener-section #why-electric div li span.text-wrapper span.text {
   display: block;
   font-size: 18px;
   line-height: 1.4;
@@ -408,6 +414,7 @@ section#greener-section #why-electric div li:last-of-type {
 }
 section#greener-section #why-electric img {
   width: 100%;
+  opacity: 0;
 }
 section#greener-section #simulate-section h3 {
   margin-bottom: 60px;
@@ -415,6 +422,7 @@ section#greener-section #simulate-section h3 {
 section#greener-section #simulate-section div {
   display: grid;
   gap: 40px;
+  padding-block: 20px;
 }
 @media (min-width: 768px) {
   section#greener-section #simulate-section div {
@@ -450,6 +458,10 @@ section#greener-section #simulate-section div {
     grid-template-columns: repeat(3, 400px);
     max-width: 1400px;
   }
+}
+section#greener-section #simulate-section div article {
+  opacity: 0;
+  position: relative;
 }
 section#greener-section #simulate-section div article img {
   width: 100%;
@@ -672,6 +684,7 @@ section#meet-section #tools-section h3 span {
 section#meet-section #tools-section div.grid-wrapper {
   display: grid;
   gap: 40px;
+  padding-block: 20px;
 }
 @media (min-width: 768px) {
   section#meet-section #tools-section div.grid-wrapper {

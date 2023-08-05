@@ -3,6 +3,7 @@ const quoteSection = document.getElementById("quote-section");
 const electrifyingSection = document.getElementById("electrifying-section");
 const londonSection = document.getElementById("london-section");
 const trySection = document.getElementById("try-section");
+const greenerSection = document.getElementById("greener-section");
 
 function sectionHeaderAnimation(item) {
   let headerObserver = new IntersectionObserver(
@@ -12,9 +13,19 @@ function sectionHeaderAnimation(item) {
           let headerTl = gsap.timeline();
           let item = entry.target;
 
-          headerTl
-            .fromTo(item.querySelector("div"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1 })
-            .fromTo(item.querySelector("h2"), { opacity: 0, left: 20 }, { opacity: 1, left: 0 });
+          if (innerWidth >= 768) {
+            headerTl.fromTo(
+              item.querySelector("div"),
+              { opacity: 0, scale: 0.4 },
+              { opacity: 1, scale: 1 }
+            );
+          }
+
+          headerTl.fromTo(
+            item.querySelector("h2"),
+            { opacity: 0, left: 20 },
+            { opacity: 1, left: 0 }
+          );
 
           headerObserver.unobserve(entry.target);
         }
@@ -26,6 +37,43 @@ function sectionHeaderAnimation(item) {
   );
 
   headerObserver.observe(item);
+}
+
+function gridCardsAnimation(cards) {
+  let cardsTl = gsap.timeline();
+
+  let gridCardObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (innerWidth >= 1200) {
+            cardsTl.fromTo(
+              entry.target,
+              { opacity: 0, top: -10 },
+              { opacity: 1, top: 0, duration: 0.6 },
+              "<=+0.2"
+            );
+          } else if (innerWidth >= 768) {
+            cardsTl.fromTo(
+              entry.target,
+              { opacity: 0, left: 10 },
+              { opacity: 1, left: 0, duration: 0.6 },
+              "<=+0.2"
+            );
+          } else {
+            cardsTl.fromTo(entry.target, { opacity: 0 }, { opacity: 1, duration: 0.7 });
+          }
+        }
+      });
+    },
+    {
+      rootMargin: "-40% 0% -40% 0%",
+    }
+  );
+
+  cards.forEach((card) => {
+    gridCardObserver.observe(card);
+  });
 }
 
 function startHeroSectionAnimation() {
@@ -114,26 +162,43 @@ function startQuoteSectionAnimation() {
           switch (entry.target.localName) {
             case "p":
               quoteSectionTl.fromTo(
-                "#quote-section div.quote p",
+                entry.target,
                 { opacity: 0, top: -5 },
                 { opacity: 1, top: 0, duration: 0.6 }
               );
               break;
             case "img":
-              quoteSectionTl.fromTo(
-                "#quote-section div.quote div.img-wrapper img",
-                { opacity: 0, right: 10, top: -5 },
-                { opacity: 1, right: 0, top: 0, duration: 0.8 },
-                "<=+0.2"
-              );
+              if (innerWidth >= 1024) {
+                quoteSectionTl.fromTo(
+                  entry.target,
+                  { opacity: 0, right: 10, top: -5 },
+                  { opacity: 1, right: 0, top: 0, duration: 0.8 },
+                  "<=+0.2"
+                );
+              } else {
+                quoteSectionTl.fromTo(
+                  entry.target,
+                  { opacity: 0, right: 10, top: -5 },
+                  { opacity: 1, right: 0, top: 0, duration: 0.8 }
+                );
+              }
+
               break;
             case "li":
-              quoteSectionTl.fromTo(
-                entry.target,
-                { opacity: 0, top: -10 },
-                { opacity: 1, top: 0, duration: 0.8 },
-                "<=+0.2"
-              );
+              if (innerWidth >= 1200) {
+                quoteSectionTl.fromTo(
+                  entry.target,
+                  { opacity: 0, top: -10 },
+                  { opacity: 1, top: 0, duration: 0.8 },
+                  "<=+0.2"
+                );
+              } else {
+                quoteSectionTl.fromTo(
+                  entry.target,
+                  { opacity: 0, top: -10 },
+                  { opacity: 1, top: 0, duration: 0.4 }
+                );
+              }
               break;
           }
 
@@ -208,6 +273,128 @@ function startTrySectionAnimation() {
     .fromTo("#try-section a", { opacity: 0, top: -10 }, { opacity: 1, top: 0, duration: 0.6 });
 }
 
+function startGreenerSectionAnimation() {
+  sectionHeaderAnimation(document.querySelector("#greener-section header"));
+
+  let whySectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          let whySectionTl = gsap.timeline();
+
+          switch (entry.target.localName) {
+            case "h3":
+              whySectionTl.fromTo(
+                entry.target,
+                { opacity: 0 },
+                { opacity: 1, duration: 0.4, delay: 0.3 }
+              );
+              break;
+
+            case "img":
+              if (innerWidth >= 1024) {
+                whySectionTl.fromTo(
+                  entry.target,
+                  { opacity: 0, scale: 0.8 },
+                  { opacity: 1, scale: 1, duration: 0.5, delay: 0.7 }
+                );
+              } else {
+                whySectionTl.fromTo(
+                  entry.target,
+                  { opacity: 0, scale: 0.8 },
+                  { opacity: 1, scale: 1, duration: 0.5 }
+                );
+              }
+              break;
+            case "ul":
+              startListAnimations();
+              break;
+
+            default:
+              break;
+          }
+
+          whySectionObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      rootMargin: "-20% 0% -40% 0%",
+    }
+  );
+
+  whySectionObserver.observe(document.querySelector("#greener-section #why-electric h3"));
+  whySectionObserver.observe(document.querySelector("#greener-section #why-electric img"));
+  whySectionObserver.observe(document.querySelector("#greener-section #why-electric ul"));
+
+  function startListAnimations() {
+    let whySectionListObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            let li = entry.target;
+            let liTl = gsap.timeline();
+
+            liTl
+              .fromTo(
+                li.querySelector("span.number"),
+                { opacity: 0, scale: 0.8 },
+                { opacity: 1, scale: 1, duration: 0.5 }
+              )
+              .fromTo(
+                li.querySelector("span.text-wrapper"),
+                { opacity: 0, left: 10 },
+                { opacity: 1, left: 0, duration: 0.5 },
+                "<=+0.2"
+              );
+
+            whySectionListObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0% -30% 0%",
+      }
+    );
+
+    document.querySelectorAll("#greener-section #why-electric ul li").forEach((li) => {
+      whySectionListObserver.observe(li);
+    });
+  }
+
+  let simulateSectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          switch (entry.target.localName) {
+            case "h3":
+              gsap.fromTo(entry.target, { opacity: 0 }, { opacity: 1 });
+
+              break;
+            case "div":
+              gridCardsAnimation(
+                document.querySelectorAll(
+                  "#greener-section #simulate-section div.grid-wrapper article"
+                )
+              );
+              break;
+            default:
+              break;
+          }
+        }
+      });
+    },
+    {
+      rootMargin: "-20% 0% -50% 0%",
+    }
+  );
+
+  simulateSectionObserver.observe(document.querySelector("#greener-section #simulate-section h3"));
+  simulateSectionObserver.observe(
+    document.querySelector("#greener-section #simulate-section div.grid-wrapper")
+  );
+}
+
 function enableAnimations(id) {
   console.log(id);
 
@@ -226,6 +413,9 @@ function enableAnimations(id) {
       break;
     case "try-section":
       startTrySectionAnimation();
+      break;
+    case "greener-section":
+      startGreenerSectionAnimation();
       break;
 
     default:
@@ -253,6 +443,7 @@ sectionsObserver.observe(quoteSection);
 sectionsObserver.observe(electrifyingSection);
 sectionsObserver.observe(londonSection);
 sectionsObserver.observe(trySection);
+sectionsObserver.observe(greenerSection);
 
 /* 
 let Observer = new IntersectionObserver(
