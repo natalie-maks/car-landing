@@ -702,6 +702,7 @@ section#high-spec-section {
           position: relative;
           width: 100%;
           display: flex;
+          align-items: center;
           justify-content: space-between;
 
           #slider-c1 {
@@ -719,20 +720,25 @@ section#high-spec-section {
           .slider-line-wrapper {
             width: 80%;
             position: relative;
+            height: 2px;
 
             #slider-line {
               position: absolute;
-              top: 50%;
-              transform: translateY(50%);
               left: 0;
               width: 100%;
               clip-path: polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%);
               transition: clip-path 0.05s ease-in-out;
+              height: 2px;
+              object-fit: cover;
             }
 
             #slider-line-light {
               clip-path: polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%);
               transition: clip-path 0.05s ease-in-out;
+              height: 2px;
+              position: absolute;
+              left: 0;
+              object-fit: cover;
               width: 100%;
             }
           }

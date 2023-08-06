@@ -686,6 +686,7 @@ section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper di
   position: relative;
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider #slider-c1 {
@@ -701,11 +702,10 @@ section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper di
 section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider .slider-line-wrapper {
   width: 80%;
   position: relative;
+  height: 2px;
 }
 section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider .slider-line-wrapper #slider-line {
   position: absolute;
-  top: 50%;
-  transform: translateY(50%);
   left: 0;
   width: 100%;
   -webkit-clip-path: polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%);
@@ -713,6 +713,9 @@ section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper di
   transition: -webkit-clip-path 0.05s ease-in-out;
   transition: clip-path 0.05s ease-in-out;
   transition: clip-path 0.05s ease-in-out, -webkit-clip-path 0.05s ease-in-out;
+  height: 2px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider .slider-line-wrapper #slider-line-light {
   -webkit-clip-path: polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%);
@@ -720,6 +723,11 @@ section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper di
   transition: -webkit-clip-path 0.05s ease-in-out;
   transition: clip-path 0.05s ease-in-out;
   transition: clip-path 0.05s ease-in-out, -webkit-clip-path 0.05s ease-in-out;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
 }
 section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider #slider-cdrag {
