@@ -680,6 +680,7 @@ section#high-spec-section #change-section div.grid-wrapper #slider-line {
 }
 section#high-spec-section #change-section div.grid-wrapper #slider-cdrag {
   z-index: 2;
+  display: none;
   background-color: yellow;
   width: 28px;
   position: absolute;
