@@ -63,7 +63,7 @@ nav {
   background-color: #edf4ff;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 10;
   border-bottom: 1px solid #001e50;
   opacity: 0;
 }
@@ -121,6 +121,7 @@ nav ul.open {
 header#hero {
   min-height: 100vh;
   position: relative;
+  overflow-x: hidden;
 }
 header#hero div.bg-gradient {
   background: radial-gradient(70.03% 70.03% at 50% 50%, #00437a 0%, #001e50 100%);
@@ -647,10 +648,20 @@ section#high-spec-section #change-section h3 {
 section#high-spec-section #change-section h3 br {
   display: none;
 }
-section#high-spec-section #change-section div.grid-wrapper img.car {
-  width: 100%;
+section#high-spec-section #change-section div.grid-wrapper div.img-wrapper {
   margin-bottom: 32px;
+  position: relative;
+}
+section#high-spec-section #change-section div.grid-wrapper div.img-wrapper img.base-car {
   opacity: 0;
+  width: 100%;
+}
+section#high-spec-section #change-section div.grid-wrapper div.img-wrapper img.color-car {
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 section#high-spec-section #change-section div.grid-wrapper p {
   margin-bottom: 20px;
@@ -666,31 +677,79 @@ section#high-spec-section #change-section div.grid-wrapper p span {
 section#high-spec-section #change-section div.grid-wrapper p span:nth-of-type(2) {
   text-align: right;
 }
-section#high-spec-section #change-section div.grid-wrapper div.slider {
+section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper {
+  position: relative;
+  margin-bottom: 80px;
+  width: 100%;
+}
+section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider {
   position: relative;
   width: 100%;
-  margin-bottom: 80px;
   display: flex;
   justify-content: space-between;
 }
-section#high-spec-section #change-section div.grid-wrapper #slider-c1,
-section#high-spec-section #change-section div.grid-wrapper #slider-c2,
-section#high-spec-section #change-section div.grid-wrapper #slider-line {
+section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider #slider-c1 {
+  position: relative;
   opacity: 0;
+  left: -14px;
 }
-section#high-spec-section #change-section div.grid-wrapper #slider-line {
-  flex-shrink: 1;
+section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider #slider-c2 {
+  position: relative;
+  opacity: 0;
+  left: 14px;
+}
+section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider .slider-line-wrapper {
   width: 80%;
+  position: relative;
 }
-section#high-spec-section #change-section div.grid-wrapper #slider-cdrag {
-  z-index: 2;
-  display: none;
-  background-color: yellow;
+section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider .slider-line-wrapper #slider-line {
+  position: absolute;
+  top: 50%;
+  transform: translateY(50%);
+  left: 0;
+  width: 100%;
+  -webkit-clip-path: polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%);
+          clip-path: polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%);
+  transition: -webkit-clip-path 0.05s ease-in-out;
+  transition: clip-path 0.05s ease-in-out;
+  transition: clip-path 0.05s ease-in-out, -webkit-clip-path 0.05s ease-in-out;
+}
+section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider .slider-line-wrapper #slider-line-light {
+  -webkit-clip-path: polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%);
+          clip-path: polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%);
+  transition: -webkit-clip-path 0.05s ease-in-out;
+  transition: clip-path 0.05s ease-in-out;
+  transition: clip-path 0.05s ease-in-out, -webkit-clip-path 0.05s ease-in-out;
+  width: 100%;
+}
+section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider #slider-cdrag {
+  z-index: 1;
   width: 28px;
   position: absolute;
   top: 50%;
   left: 0%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: all 0.05s ease-in-out;
+}
+section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper div.slider #slider-cfilled {
+  z-index: 1;
+  width: 28px;
+  position: absolute;
+  top: 50%;
+  opacity: 0;
+  right: 0%;
+  transform: translate(50%, -50%);
+  transition: all 0.05s ease-in-out;
+}
+section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper #range-input {
+  width: 100%;
+  position: absolute;
+  top: 50%;
   transform: translateY(-50%);
+  opacity: 0;
+  z-index: 2;
+  height: 100%;
 }
 section#high-spec-section #change-section a {
   opacity: 0;
@@ -1280,11 +1339,11 @@ footer a:hover {
   }
 }
 @media (min-width: 1024px) {
-  section#high-spec-section #change-section div.grid-wrapper img.car {
+  section#high-spec-section #change-section div.grid-wrapper div.img-wrapper {
     grid-column: 4/10;
     margin-bottom: 24px;
   }
-  section#high-spec-section #change-section div.grid-wrapper div.slider-wrapper {
+  section#high-spec-section #change-section div.grid-wrapper div.slider-block-wrapper {
     grid-column: 3/11;
   }
   section#ask-section {

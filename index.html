@@ -258,8 +258,15 @@
             want about your car
           </h3>
           <div class="grid-wrapper">
-            <img class="car" id="color-car" src="/media/color-white.png" alt="" />
-            <div class="slider-wrapper">
+            <div class="img-wrapper">
+              <img class="base-car" id="white-color-car" src="/media/color-white.png" alt="" />
+              <img class="color-car" id="silver-color-car" src="/media/color-silver.png" alt="" />
+              <img class="color-car" id="grey-color-car" src="/media/color-grey.png" alt="" />
+              <img class="color-car" id="urano-color-car" src="/media/color-urano.png" alt="" />
+              <img class="color-car" id="black-color-car" src="/media/color-black.png" alt="" />
+              <img class="color-car" id="blue-color-car" src="/media/color-blue.png" alt="" />
+            </div>
+            <div class="slider-block-wrapper">
               <p>
                 <span class="start">Starting with colour</span>
                 <span class="finish"
@@ -267,11 +274,18 @@
                   interior changes</span
                 >
               </p>
-              <div class="slider">
-                <img src="/media/circle-1.svg" id="slider-c1" alt="" />
-                <img src="/media/slider-line.svg" id="slider-line" alt="" />
-                <img src="/media/circle-2.svg" id="slider-c2" alt="" />
-                <img src="/media/circle-1.svg" id="slider-cdrag" alt="" />
+              <div class="slider-wrapper">
+                <div class="slider">
+                  <img src="/media/circle-1.svg" id="slider-c1" alt="" />
+                  <div class="slider-line-wrapper">
+                    <img src="/media/slider-line.svg" id="slider-line-light" alt="" />
+                    <img src="/media/slider-line.svg" id="slider-line" alt="" />
+                  </div>
+                  <img src="/media/circle-2.svg" id="slider-c2" alt="" />
+                  <img src="/media/circle-1.svg" id="slider-cdrag" alt="" />
+                  <img src="/media/circle-1.svg" id="slider-cfilled" alt="" />
+                </div>
+                <input type="range" min="0" max="100" value="0" id="range-input" />
               </div>
             </div>
           </div>

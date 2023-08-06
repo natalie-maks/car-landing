@@ -493,11 +493,11 @@ function startHighSectionAnimation() {
   function startColorBlockAnimation() {
     let colorBlockTl = gsap.timeline();
     const sliderWrapper = document.querySelector(
-      "#high-spec-section #change-section .grid-wrapper .slider-wrapper"
+      "#high-spec-section #change-section .grid-wrapper .slider-block-wrapper"
     );
 
     colorBlockTl.fromTo(
-      "#high-spec-section #change-section .grid-wrapper img.car",
+      "#high-spec-section #change-section .grid-wrapper img.base-car",
       { opacity: 0, scale: 1.1 },
       { opacity: 1, scale: 1, duration: 0.5 }
     );
@@ -519,26 +519,118 @@ function startHighSectionAnimation() {
                 "<="
               )
               .fromTo(
+                sliderWrapper.querySelector("#slider-cdrag"),
+                { opacity: 0 },
+                { opacity: 1, duration: 0.5 },
+                "<="
+              )
+              .fromTo(
                 sliderWrapper.querySelector("#slider-line"),
-                { opacity: 0, clipPath: "polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%)" },
+                { clipPath: "polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%)" },
                 {
-                  opacity: 1,
                   clipPath: "polygon(0% 0%, 100% 0%, 100% 120%, 0% 120%)",
                   transition: "clip-path",
-                  duration: 0.8,
+
+                  duration: 3.2,
                 }
               )
               .fromTo(
+                sliderWrapper.querySelector("#slider-line-light"),
+                { clipPath: "polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%)" },
+                {
+                  opacity: 0.4,
+                  clipPath: "polygon(0% 0%, 100% 0%, 100% 120%, 0% 120%)",
+                  transition: "clip-path",
+                  duration: 3.2,
+                },
+                "<="
+              )
+              .fromTo(
+                "#silver-color-car",
+                { opacity: 0 },
+                {
+                  opacity: 1,
+                  duration: 0.2,
+                },
+                "<=-0.1"
+              )
+              .fromTo(
+                "#grey-color-car",
+                { opacity: 0 },
+                {
+                  opacity: 1,
+                  duration: 0.2,
+                },
+                "<=0.6"
+              )
+              .fromTo(
+                "#urano-color-car",
+                { opacity: 0 },
+                {
+                  opacity: 1,
+                  duration: 0.2,
+                },
+                "<=0.7"
+              )
+              .to("#silver-color-car", { opacity: 0, duration: 0.2 }, "<=")
+              .fromTo(
+                "#black-color-car",
+                { opacity: 0 },
+                {
+                  opacity: 1,
+                  duration: 0.2,
+                },
+                "<=0.7"
+              )
+              .to("#grey-color-car", { opacity: 0, duration: 0.2 }, "<=")
+              .fromTo(
+                "#blue-color-car",
+                { opacity: 0 },
+                {
+                  opacity: 1,
+                  duration: 0.2,
+                },
+                "<=0.7"
+              )
+              .to("#urano-color-car", { opacity: 0, duration: 0.2 }, "<=")
+              .fromTo(
                 sliderWrapper.querySelector("p span.finish"),
                 { opacity: 0 },
-                { opacity: 1, duration: 0.5 }
+                { opacity: 1, duration: 0.7 },
+                ">="
+              )
+              .fromTo(
+                sliderWrapper.querySelector("#slider-cfilled"),
+                { opacity: 0 },
+                { opacity: 1, duration: 0.7 },
+                "<="
               )
               .fromTo(
                 sliderWrapper.querySelector("#slider-c2"),
                 { opacity: 0 },
-                { opacity: 1, duration: 0.5 },
+                { opacity: 1, duration: 0.1 },
+                ">=-0.1"
+              )
+              .to(sliderWrapper.querySelector("#slider-line"), {
+                opacity: 0,
+
+                duration: 0.5,
+                delay: 1,
+              })
+              .to(
+                sliderWrapper.querySelector("#slider-cfilled"),
+                { opacity: 0, duration: 0.5 },
                 "<="
-              );
+              )
+              .to("#black-color-car", { opacity: 0, duration: 0.2 }, "<=")
+              .to("#blue-color-car", { opacity: 0, duration: 0.2 }, "<=")
+              .to(sliderWrapper.querySelector("#slider-line"), {
+                clipPath: "polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%)",
+              })
+              .to(sliderWrapper.querySelector("#slider-line"), {
+                opacity: 1,
+                duration: 0.1,
+              });
 
             sliderObserver.unobserve(entry.target);
           }
@@ -819,3 +911,93 @@ if (innerWidth < 768) {
     });
   });
 }
+
+const input = document.getElementById("range-input");
+const dragCircle = document.getElementById("slider-cdrag");
+const sliderLine = document.getElementById("slider-line");
+
+const whiteCar = document.getElementById("white-color-car");
+const silverCar = document.getElementById("silver-color-car");
+const greyCar = document.getElementById("grey-color-car");
+const uranoCar = document.getElementById("urano-color-car");
+const blackCar = document.getElementById("black-color-car");
+const blueCar = document.getElementById("blue-color-car");
+
+const colorCar = document.querySelectorAll(".color-car");
+
+input.addEventListener("input", (e) => {
+  let perc = e.target.value;
+  console.log(perc);
+  dragCircle.style.left = `${perc}%`;
+
+  if (perc < 10) {
+    sliderLine.style.clipPath = `polygon(0 0, 0% 0, 0% 100%, 0% 100%)`;
+  } else if (perc >= 10 && perc <= 90) {
+    distance = (perc - 10) * 1.25;
+    sliderLine.style.clipPath = `polygon(0 0, ${distance}% 0, ${distance}% 100%, 0% 100%)`;
+  } else {
+    sliderLine.style.clipPath = `polygon(0 0, 100% 0, 100% 100%, 0% 100%)`;
+  }
+
+  switch (true) {
+    case perc > 85:
+      blueCar.style.opacity = 1;
+      blackCar.style.opacity = 1;
+      uranoCar.style.opacity = 1;
+      greyCar.style.opacity = 1;
+      silverCar.style.opacity = 1;
+
+      break;
+    case perc > 68:
+      blueCar.style.opacity = 0;
+      blackCar.style.opacity = 1;
+      uranoCar.style.opacity = 1;
+      greyCar.style.opacity = 1;
+      silverCar.style.opacity = 1;
+      break;
+    case perc > 50:
+      blueCar.style.opacity = 0;
+      blackCar.style.opacity = 0;
+      uranoCar.style.opacity = 1;
+      greyCar.style.opacity = 1;
+      silverCar.style.opacity = 1;
+
+      break;
+    case perc > 32:
+      blueCar.style.opacity = 0;
+      blackCar.style.opacity = 0;
+      uranoCar.style.opacity = 0;
+      greyCar.style.opacity = 1;
+      silverCar.style.opacity = 1;
+
+      break;
+    case perc > 15:
+      blueCar.style.opacity = 0;
+      blackCar.style.opacity = 0;
+      uranoCar.style.opacity = 0;
+      greyCar.style.opacity = 0;
+      silverCar.style.opacity = 1;
+
+      break;
+
+    default:
+      blueCar.style.opacity = 0;
+      blackCar.style.opacity = 0;
+      uranoCar.style.opacity = 0;
+      greyCar.style.opacity = 0;
+      silverCar.style.opacity = 0;
+      break;
+  }
+});
+
+input.addEventListener("change", (e) => {
+  let perc = e.target.value;
+
+  if (perc < 10) {
+    dragCircle.style.left = `0%`;
+  } else if (perc >= 10 && perc <= 90) {
+    dragCircle.style.left = `${perc}%`;
+  } else {
+    dragCircle.style.left = `100%`;
+  }
+});
