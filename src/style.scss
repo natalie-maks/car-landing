@@ -180,7 +180,6 @@ nav {
   z-index: 2;
   border-bottom: 1px solid $blue;
   opacity: 0;
-  padding-block: 20px;
 
   button {
     width: 100%;
@@ -203,6 +202,7 @@ nav {
     row-gap: 20px;
     position: absolute;
     top: 98%;
+    padding-block: 20px;
 
     li {
       text-align: center;
@@ -692,6 +692,11 @@ section#high-spec-section {
       #slider-c2,
       #slider-line {
         opacity: 0;
+      }
+
+      #slider-line {
+        flex-shrink: 1;
+        width: 80%;
       }
 
       #slider-cdrag {
