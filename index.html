@@ -13,31 +13,42 @@
     <title>Volkswagen e-Golf</title>
   </head>
   <body>
-    <main>
-      <section id="hero">
-        <header>
-          <div class="logo-wrapper">
-            <img src="/media/vector.svg" alt="" />
-          </div>
-        </header>
-        <div class="bg-gradient"></div>
-        <div class="grid-wrapper">
-          <img class="discover" src="/media/DISCOVER the Future.svg" alt="" />
-          <h1>
-            <span class="future"
-              >Future of Driving
-              <img class="line-1" src="/media/line-1.svg" alt="" />
-              <img class="line-2" src="/media/line-2.svg" alt="" />
-            </span>
-            <span class="egolf"
-              >The All-New <br />
-              Volkswagen e-Golf
-              <img class="line-3" src="/media/line-3.svg" alt="" />
-            </span>
-          </h1>
-          <img class="car" src="/media/hero.png" alt="" />
+    <header id="hero">
+      <div class="logo-line">
+        <div class="logo-wrapper">
+          <img src="/media/vector.svg" alt="" />
         </div>
-      </section>
+      </div>
+      <div class="bg-gradient"></div>
+      <div class="grid-wrapper">
+        <img class="discover" src="/media/DISCOVER the Future.svg" alt="" />
+        <h1>
+          <span class="future"
+            >Future of Driving
+            <img class="line-1" src="/media/line-1.svg" alt="" />
+            <img class="line-2" src="/media/line-2.svg" alt="" />
+          </span>
+          <span class="egolf"
+            >The All-New <br />
+            Volkswagen e-Golf
+            <img class="line-3" src="/media/line-3.svg" alt="" />
+          </span>
+        </h1>
+        <img class="car" src="/media/hero.png" alt="" />
+      </div>
+    </header>
+    <nav id="navbar">
+      <button id="menu-btn"><img src="/media/arrow.svg" alt="" /></button>
+      <ul id="menu">
+        <li><a href="#quote-section">Overview</a></li>
+        <li><a href="#electrifying-section">Explore eGolf features</a></li>
+        <li><a href="#greener-section">Why electric car</a></li>
+        <li><a href="#simulate-section">Helpful tools</a></li>
+        <li><a href="#high-spec-section">Build your car</a></li>
+        <li><a href="#meet-section">Next steps</a></li>
+      </ul>
+    </nav>
+    <main>
       <section id="quote-section">
         <div class="quote">
           <p>
@@ -256,24 +267,12 @@
                   interior changes</span
                 >
               </p>
-              <svg
-                class="slider"
-                viewBox="0 0 804 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle id="slider-c1" cx="14" cy="14" r="13.5" fill="#001E50" stroke="#001E50" />
-                <circle id="slider-c2" cx="790" cy="14" r="13.5" stroke="#001E50" />
-                <rect
-                  id="slider-line"
-                  x="103"
-                  y="13"
-                  width="598"
-                  height="2"
-                  fill="#001E50"
-                  fill-opacity="0.7"
-                />
-              </svg>
+              <div class="slider">
+                <img src="/media/circle-1.svg" id="slider-c1" alt="" />
+                <img src="/media/slider-line.svg" id="slider-line" alt="" />
+                <img src="/media/circle-2.svg" id="slider-c2" alt="" />
+                <img src="/media/circle-1.svg" id="slider-cdrag" alt="" />
+              </div>
             </div>
           </div>
 

@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #edf4ff;
   font-family: "Poppins", sans-serif;
@@ -13,6 +17,7 @@ body {
 main {
   margin: 0 auto;
   overflow-x: hidden;
+  position: relative;
 }
 
 a {
@@ -53,18 +58,78 @@ ul {
   list-style: none;
 }
 
-section#hero {
+nav {
+  width: 100%;
+  background-color: #edf4ff;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 1px solid #001e50;
+  opacity: 0;
+  padding-block: 20px;
+}
+@media (min-width: 1024px) {
+  nav {
+    padding-inline: 70px;
+  }
+}
+@media (min-width: 1920px) {
+  nav {
+    padding-inline: 10%;
+  }
+}
+@media (min-width: 2200px) {
+  nav {
+    padding-inline: 15%;
+  }
+}
+nav button {
+  width: 100%;
+  color: #001e50;
+  background: none;
+  border: none;
+  padding-block: 12px;
+}
+nav ul {
+  background-color: #edf4ff;
+  border-bottom: 1px solid #001e50;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: all 300ms;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 20px;
+  position: absolute;
+  top: 98%;
+}
+nav ul li {
+  text-align: center;
+}
+nav ul li a {
+  font-size: 20px;
+}
+nav ul li a:hover {
+  color: #068cc4;
+}
+nav ul.open {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+header#hero {
   min-height: 100vh;
   position: relative;
 }
-section#hero div.bg-gradient {
+header#hero div.bg-gradient {
   background: radial-gradient(70.03% 70.03% at 50% 50%, #00437a 0%, #001e50 100%);
   position: absolute;
   inset: 0;
   z-index: -1;
   opacity: 0;
 }
-section#hero div.grid-wrapper {
+header#hero div.grid-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,48 +138,48 @@ section#hero div.grid-wrapper {
   padding-block: 70px;
   position: relative;
 }
-section#hero div.grid-wrapper img.discover {
+header#hero div.grid-wrapper img.discover {
   display: none;
 }
-section#hero div.grid-wrapper h1 {
+header#hero div.grid-wrapper h1 {
   color: #edf4ff;
   margin-bottom: 80px;
 }
-section#hero div.grid-wrapper h1 span {
+header#hero div.grid-wrapper h1 span {
   display: block;
   text-align: center;
 }
-section#hero div.grid-wrapper h1 span.future {
+header#hero div.grid-wrapper h1 span.future {
   font-size: 44px;
   font-weight: 300;
   line-height: 1.2;
   margin-bottom: 48px;
   position: relative;
 }
-section#hero div.grid-wrapper h1 span.future img.line-1 {
+header#hero div.grid-wrapper h1 span.future img.line-1 {
   position: absolute;
   bottom: -10px;
 }
-section#hero div.grid-wrapper h1 span.future img.line-2 {
+header#hero div.grid-wrapper h1 span.future img.line-2 {
   position: absolute;
   bottom: -30px;
 }
-section#hero div.grid-wrapper h1 span.egolf {
+header#hero div.grid-wrapper h1 span.egolf {
   font-size: 36px;
   font-weight: 500;
   line-height: 1.3;
   position: relative;
 }
-section#hero div.grid-wrapper h1 span.egolf img.line-3 {
+header#hero div.grid-wrapper h1 span.egolf img.line-3 {
   position: absolute;
   bottom: -20px;
 }
-section#hero div.grid-wrapper img.car {
+header#hero div.grid-wrapper img.car {
   width: 100%;
   opacity: 0;
   position: relative;
 }
-section#hero header {
+header#hero div.logo-line {
   height: 100px;
   width: 100%;
   padding-block: 24px;
@@ -122,13 +187,13 @@ section#hero header {
   align-items: center;
   position: relative;
 }
-section#hero header .logo-wrapper {
+header#hero div.logo-line .logo-wrapper {
   width: 52px;
   height: 52px;
   margin-inline: 36px;
   display: inline-block;
 }
-section#hero header:before, section#hero header:after {
+header#hero div.logo-line:before, header#hero div.logo-line:after {
   content: "";
   display: inline-block;
   width: 100%;
@@ -601,14 +666,26 @@ section#high-spec-section #change-section div.grid-wrapper p span {
 section#high-spec-section #change-section div.grid-wrapper p span:nth-of-type(2) {
   text-align: right;
 }
-section#high-spec-section #change-section div.grid-wrapper svg.slider {
+section#high-spec-section #change-section div.grid-wrapper div.slider {
+  position: relative;
   width: 100%;
   margin-bottom: 80px;
+  display: flex;
+  justify-content: space-between;
 }
-section#high-spec-section #change-section div.grid-wrapper svg.slider #slider-c1,
-section#high-spec-section #change-section div.grid-wrapper svg.slider #slider-c2,
-section#high-spec-section #change-section div.grid-wrapper svg.slider #slider-line {
+section#high-spec-section #change-section div.grid-wrapper #slider-c1,
+section#high-spec-section #change-section div.grid-wrapper #slider-c2,
+section#high-spec-section #change-section div.grid-wrapper #slider-line {
   opacity: 0;
+}
+section#high-spec-section #change-section div.grid-wrapper #slider-cdrag {
+  z-index: 2;
+  background-color: yellow;
+  width: 28px;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translateY(-50%);
 }
 section#high-spec-section #change-section a {
   opacity: 0;
@@ -844,15 +921,33 @@ footer a:hover {
   }
 }
 @media (min-width: 768px) {
-  section#hero div.grid-wrapper h1 {
+  nav button {
+    display: none;
+  }
+  nav ul {
+    flex-wrap: wrap;
+    -moz-column-gap: 28px;
+         column-gap: 28px;
+    flex-direction: row;
+    border-bottom: none;
+    row-gap: 16px;
+    transform: scaleY(1);
+    opacity: 1;
+    padding-inline: 60px;
+    position: static;
+  }
+  nav ul li a {
+    font-size: 18px;
+  }
+  header#hero div.grid-wrapper h1 {
     margin-bottom: 50px;
   }
-  section#hero div.grid-wrapper h1 span.future {
+  header#hero div.grid-wrapper h1 span.future {
     font-size: 60px;
     font-weight: 500;
     margin-bottom: 40px;
   }
-  section#hero div.grid-wrapper h1 span.egolf {
+  header#hero div.grid-wrapper h1 span.egolf {
     font-size: 44px;
     font-weight: 300;
   }
@@ -957,7 +1052,10 @@ footer a:hover {
   }
 }
 @media (min-width: 1024px) {
-  section#hero div.grid-wrapper {
+  nav ul {
+    padding-inline: 0;
+  }
+  header#hero div.grid-wrapper {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     -moz-column-gap: 20px;
@@ -966,22 +1064,22 @@ footer a:hover {
   }
 }
 @media (min-width: 1024px) and (min-width: 1024px) {
-  section#hero div.grid-wrapper {
+  header#hero div.grid-wrapper {
     padding-inline: 70px;
   }
 }
 @media (min-width: 1024px) and (min-width: 1920px) {
-  section#hero div.grid-wrapper {
+  header#hero div.grid-wrapper {
     padding-inline: 10%;
   }
 }
 @media (min-width: 1024px) and (min-width: 2200px) {
-  section#hero div.grid-wrapper {
+  header#hero div.grid-wrapper {
     padding-inline: 15%;
   }
 }
 @media (min-width: 1024px) {
-  section#hero div.grid-wrapper img.discover {
+  header#hero div.grid-wrapper img.discover {
     opacity: 0;
     display: block;
     position: absolute;
@@ -991,24 +1089,24 @@ footer a:hover {
     z-index: -1;
     width: 85%;
   }
-  section#hero div.grid-wrapper h1 {
+  header#hero div.grid-wrapper h1 {
     grid-column: 1/7;
     margin-bottom: 0;
   }
-  section#hero div.grid-wrapper h1 span {
+  header#hero div.grid-wrapper h1 span {
     text-align: left;
   }
-  section#hero div.grid-wrapper h1 span.future {
+  header#hero div.grid-wrapper h1 span.future {
     font-size: 52px;
     margin-bottom: 68px;
   }
-  section#hero div.grid-wrapper h1 span.future img.line-1 {
+  header#hero div.grid-wrapper h1 span.future img.line-1 {
     bottom: -20px;
   }
-  section#hero div.grid-wrapper h1 span.future img.line-2 {
+  header#hero div.grid-wrapper h1 span.future img.line-2 {
     bottom: -45px;
   }
-  section#hero div.grid-wrapper img.car {
+  header#hero div.grid-wrapper img.car {
     grid-column: 7/13;
     width: 120%;
   }
@@ -1240,10 +1338,10 @@ footer a:hover {
   }
 }
 @media (min-width: 1200px) {
-  section#hero div.grid-wrapper h1 {
+  header#hero div.grid-wrapper h1 {
     grid-column: 2/7;
   }
-  section#hero div.grid-wrapper img.car {
+  header#hero div.grid-wrapper img.car {
     grid-column: 7/13;
     width: 100%;
   }
@@ -1365,14 +1463,14 @@ footer a:hover {
   }
 }
 @media (min-width: 1920px) {
-  section#hero div.grid-wrapper {
+  header#hero div.grid-wrapper {
     padding-inline: 100px;
   }
-  section#hero div.grid-wrapper h1 span.future {
+  header#hero div.grid-wrapper h1 span.future {
     font-size: 72px;
     margin-bottom: 80px;
   }
-  section#hero div.grid-wrapper h1 span.egolf {
+  header#hero div.grid-wrapper h1 span.egolf {
     font-size: 56px;
   }
   section#quote-section {
@@ -1434,14 +1532,14 @@ footer a:hover {
   }
 }
 @media (min-width: 2100px) {
-  section#hero div.grid-wrapper {
+  header#hero div.grid-wrapper {
     padding-inline: 100px;
   }
-  section#hero div.grid-wrapper h1 span.future {
+  header#hero div.grid-wrapper h1 span.future {
     font-size: 92px;
     margin-bottom: 92px;
   }
-  section#hero div.grid-wrapper h1 span.egolf {
+  header#hero div.grid-wrapper h1 span.egolf {
     font-size: 72px;
   }
   footer {

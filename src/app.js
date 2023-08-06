@@ -9,6 +9,7 @@ const highSection = document.getElementById("high-spec-section");
 const askSection = document.getElementById("ask-section");
 const meetSection = document.getElementById("meet-section");
 const footer = document.querySelector("footer");
+const main = document.querySelector("main");
 
 function sectionHeaderAnimation(item) {
   let headerObserver = new IntersectionObserver(
@@ -55,14 +56,14 @@ function gridCardsAnimation(cards) {
             cardsTl.fromTo(
               entry.target,
               { opacity: 0, top: -10 },
-              { opacity: 1, top: 0, duration: 0.8 },
+              { opacity: 1, top: 0, duration: 1 },
               "<=+0.2"
             );
           } else if (innerWidth >= 768) {
             cardsTl.fromTo(
               entry.target,
               { opacity: 0, left: 10 },
-              { opacity: 1, left: 0, duration: 0.8 },
+              { opacity: 1, left: 0, duration: 0.9 },
               "<=+0.2"
             );
           } else {
@@ -147,11 +148,15 @@ function startHeroSectionAnimation() {
     )
     .to("#hero h1 span.egolf img.line-3", { animation: "15.7s infinite linear  slide" }, "<=")
     .fromTo(
-      "#hero header",
+      "#hero div.logo-line",
       { opacity: 0, top: -10 },
       { opacity: 1, top: 0, duration: 0.6 },
       "<=+0.1"
     );
+}
+
+function startNavbarAnimation() {
+  gsap.fromTo("#navbar", { opacity: 0 }, { opacity: 1 });
 }
 
 function startQuoteSectionAnimation() {
@@ -445,13 +450,6 @@ function startHighSectionAnimation() {
                 { opacity: 1, top: 0, duration: 0.6 }
               );
               break;
-            case "a":
-              gsap.fromTo(
-                entry.target,
-                { opacity: 0, top: -10 },
-                { opacity: 1, top: 0, duration: 0.6 }
-              );
-              break;
             case "div":
               startColorBlockAnimation();
               break;
@@ -471,7 +469,26 @@ function startHighSectionAnimation() {
   highSectionObserver.observe(
     document.querySelector("#high-spec-section #change-section .grid-wrapper")
   );
-  highSectionObserver.observe(document.querySelector("#high-spec-section #change-section a"));
+
+  let highAObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          gsap.fromTo(
+            entry.target,
+            { opacity: 0, top: -10 },
+            { opacity: 1, top: 0, duration: 0.6 }
+          );
+          highAObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      rootMargin: "-15% 0% -15% 0%",
+    }
+  );
+
+  highAObserver.observe(document.querySelector("#high-spec-section #change-section a"));
 
   function startColorBlockAnimation() {
     let colorBlockTl = gsap.timeline();
@@ -480,7 +497,7 @@ function startHighSectionAnimation() {
     );
 
     colorBlockTl.fromTo(
-      "#high-spec-section #change-section .grid-wrapper img",
+      "#high-spec-section #change-section .grid-wrapper img.car",
       { opacity: 0, scale: 1.1 },
       { opacity: 1, scale: 1, duration: 0.5 }
     );
@@ -554,89 +571,59 @@ function startMeetSectionAnimation() {
 
   let retailerSectionTl = gsap.timeline();
 
-  if (innerWidth >= 1024) {
-    let retailerSectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            retailerSectionTl
-              .fromTo(
-                "#retailer-section p",
-                { opacity: 0, top: -10 },
-                { opacity: 1, top: 0, duration: 0.6 }
-              )
-              .fromTo(
-                "#retailer-section a",
-                { opacity: 0, top: -10 },
-                { opacity: 1, top: 0, duration: 0.6 },
-                "<=+0.3"
-              )
-              .fromTo(
-                "#retailer-section img",
-                { opacity: 0, left: 10 },
-                { opacity: 1, left: 0, duration: 0.6 },
-                "<=+0.1"
-              );
-
-            retailerSectionObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        rootMargin: "-30% 0% -50% 0%",
-      }
-    );
-
-    retailerSectionObserver.observe(document.querySelector("#retailer-section"));
-  } else {
-    let retailerSectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            retailerSectionTl
-              .fromTo(
-                "#retailer-section p",
-                { opacity: 0, top: -10 },
-                { opacity: 1, top: 0, duration: 0.6 }
-              )
-              .fromTo(
-                "#retailer-section a",
-                { opacity: 0, top: -10 },
-                { opacity: 1, top: 0, duration: 0.6 },
-                "<=+0.3"
-              );
-
-            retailerSectionObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        rootMargin: "-20% 0% -50% 0%",
-      }
-    );
-
-    retailerSectionObserver.observe(document.querySelector("#retailer-section .text-wrapper"));
-    let retailerImgObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            gsap.fromTo(
-              entry.target,
-              { opacity: 0, left: 10 },
-              { opacity: 1, left: 0, duration: 0.6 }
+  let retailerSectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          retailerSectionTl
+            .fromTo(
+              "#retailer-section p",
+              { opacity: 0, top: -10 },
+              { opacity: 1, top: 0, duration: 0.6 }
+            )
+            .fromTo(
+              "#retailer-section a",
+              { opacity: 0, top: -10 },
+              { opacity: 1, top: 0, duration: 0.6 },
+              "<=+0.3"
             );
 
-            retailerImgObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        rootMargin: "-20% 0% -20% 0%",
-      }
-    );
+          retailerSectionObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      rootMargin: "-30% 0% -50% 0%",
+    }
+  );
 
-    retailerImgObserver.observe(document.querySelector("#retailer-section img"));
+  retailerSectionObserver.observe(document.querySelector("#retailer-section .text-wrapper"));
+
+  let imgRoot = "-20% 0% -20% 0%";
+  if (innerWidth >= 1024) {
+    imgRoot = "-20% 0% -50% 0%";
   }
+
+  let retailerImgObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          gsap.fromTo(
+            entry.target,
+            { opacity: 0, left: 10 },
+            { opacity: 1, left: 0, duration: 0.6 }
+          );
+
+          retailerImgObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      rootMargin: imgRoot,
+    }
+  );
+
+  retailerImgObserver.observe(document.querySelector("#retailer-section img"));
 
   let toolsSectionObserver = new IntersectionObserver(
     (entries) => {
@@ -666,6 +653,11 @@ function startMeetSectionAnimation() {
 
 function startFooterAnimation() {
   gsap.fromTo(footer, { opacity: 0 }, { opacity: 1 });
+  let rootMargin = "-10% 0% -40% 0%";
+
+  if (innerWidth > 2500) {
+    rootMargin = "0% 0% -25% 0%";
+  }
 
   let columnObserver = new IntersectionObserver(
     (entries) => {
@@ -685,7 +677,7 @@ function startFooterAnimation() {
       });
     },
     {
-      rootMargin: "-10% 0% -50% 0%",
+      rootMargin: rootMargin,
     }
   );
 
@@ -710,8 +702,6 @@ function startFooterAnimation() {
 }
 
 function enableAnimations(id) {
-  console.log(id);
-
   switch (id) {
     case "hero":
       startHeroSectionAnimation();
@@ -743,9 +733,8 @@ function enableAnimations(id) {
     case "meet-section":
       startMeetSectionAnimation();
       break;
-
     default:
-      startFooterAnimation();
+      startNavbarAnimation();
       break;
   }
 }
@@ -754,7 +743,6 @@ let sectionsObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        console.log(entry);
         enableAnimations(entry.target.id);
         sectionsObserver.unobserve(entry.target);
       }
@@ -762,6 +750,26 @@ let sectionsObserver = new IntersectionObserver(
   },
   {
     rootMargin: "-20% 0% -60% 0%",
+  }
+);
+
+let rootMargin = "0% 0% -40% 0%";
+
+if (innerWidth > 2500) {
+  rootMargin = "0% 0% -25% 0%";
+}
+
+let footerObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        startFooterAnimation();
+        footerObserver.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    rootMargin: rootMargin,
   }
 );
 
@@ -775,7 +783,8 @@ sectionsObserver.observe(chargingSection);
 sectionsObserver.observe(highSection);
 sectionsObserver.observe(askSection);
 sectionsObserver.observe(meetSection);
-sectionsObserver.observe(footer);
+sectionsObserver.observe(main);
+footerObserver.observe(footer);
 
 /* 
 let Observer = new IntersectionObserver(
@@ -795,3 +804,18 @@ let Observer = new IntersectionObserver(
 Observer.observe();
 
 */
+
+const menuBtn = document.getElementById("menu-btn");
+const menu = document.getElementById("menu");
+
+if (innerWidth < 768) {
+  menuBtn.addEventListener("click", () => {
+    menu.classList.toggle("open");
+  });
+
+  menu.querySelectorAll("li").forEach((li) => {
+    li.addEventListener("click", () => {
+      menu.classList.remove("open");
+    });
+  });
+}
