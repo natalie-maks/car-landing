@@ -530,7 +530,6 @@ function startHighSectionAnimation() {
                 {
                   clipPath: "polygon(0% 0%, 100% 0%, 100% 120%, 0% 120%)",
                   transition: "clip-path",
-
                   duration: 3.2,
                 }
               )
@@ -613,9 +612,8 @@ function startHighSectionAnimation() {
               )
               .to(sliderWrapper.querySelector("#slider-line"), {
                 opacity: 0,
-
                 duration: 0.5,
-                delay: 1,
+                delay: 0.6,
               })
               .to(
                 sliderWrapper.querySelector("#slider-cfilled"),
@@ -748,7 +746,7 @@ function startFooterAnimation() {
   let rootMargin = "-10% 0% -40% 0%";
 
   if (innerWidth > 2500) {
-    rootMargin = "0% 0% -25% 0%";
+    rootMargin = "0% 0% -20% 0%";
   }
 
   let columnObserver = new IntersectionObserver(
@@ -841,14 +839,14 @@ let sectionsObserver = new IntersectionObserver(
     });
   },
   {
-    rootMargin: "-20% 0% -60% 0%",
+    rootMargin: "-20% 0% -50% 0%",
   }
 );
 
 let rootMargin = "0% 0% -40% 0%";
 
 if (innerWidth > 2500) {
-  rootMargin = "0% 0% -25% 0%";
+  rootMargin = "0% 0% -20% 0%";
 }
 
 let footerObserver = new IntersectionObserver(
