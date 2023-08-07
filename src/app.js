@@ -362,18 +362,26 @@ function startGreenerSectionAnimation() {
 
               let liTl = gsap.timeline();
 
-              liTl
-                .fromTo(
-                  li.querySelector("span.number"),
-                  { opacity: 0, scale: 0.8 },
-                  { opacity: 1, scale: 1, duration: 0.5 }
-                )
-                .fromTo(
+              liTl.fromTo(
+                li.querySelector("span.number"),
+                { opacity: 0, scale: 0.8 },
+                { opacity: 1, scale: 1, duration: 0.5 }
+              );
+
+              if (innerWidth < 768) {
+                liTl.fromTo(
+                  li.querySelector("span.text-wrapper"),
+                  { opacity: 0, left: 10 },
+                  { opacity: 1, left: 0, duration: 0.5 }
+                );
+              } else {
+                liTl.fromTo(
                   li.querySelector("span.text-wrapper"),
                   { opacity: 0, left: 10 },
                   { opacity: 1, left: 0, duration: 0.5 },
                   "<=+0.2"
                 );
+              }
 
               whySectionListObserver.unobserve(entry.target);
             }
