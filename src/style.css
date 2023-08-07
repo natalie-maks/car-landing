@@ -23,7 +23,7 @@ main {
 a {
   color: inherit;
   text-decoration: none;
-  transition: color 250ms ease-in-out;
+  transition: color 200ms ease-in-out;
   position: relative;
 }
 a.button {

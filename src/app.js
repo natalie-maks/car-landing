@@ -11,6 +11,14 @@ const meetSection = document.getElementById("meet-section");
 const footer = document.querySelector("footer");
 const main = document.querySelector("main");
 
+const loadImage = (image) =>
+  new Promise((resolve, reject) => {
+    let src = image.dataset.src;
+    image.onload = () => resolve(image);
+    image.onerror = reject;
+    image.src = src;
+  });
+
 function sectionHeaderAnimation(item) {
   let headerObserver = new IntersectionObserver(
     (entries) => {
@@ -84,75 +92,80 @@ function gridCardsAnimation(cards) {
 }
 
 function startHeroSectionAnimation() {
-  let heroTl = gsap.timeline();
+  let images = Array.from(document.querySelectorAll("#hero img"));
+  Promise.all(images.map(loadImage)).then(executeAnimations);
 
-  heroTl.fromTo("#hero div.bg-gradient", { opacity: 0 }, { opacity: 0.9, duration: 0.6 });
+  function executeAnimations() {
+    let heroTl = gsap.timeline();
 
-  if (innerWidth >= 1024) {
-    heroTl.fromTo(
-      "#hero img.discover",
-      { opacity: 0, left: 30 },
-      { opacity: 1, left: 0, duration: 0.7, delay: 0.3 }
-    );
+    heroTl.fromTo("#hero div.bg-gradient", { opacity: 0 }, { opacity: 0.9, duration: 0.6 });
+
+    if (innerWidth >= 1024) {
+      heroTl.fromTo(
+        "#hero img.discover",
+        { opacity: 0, left: 30 },
+        { opacity: 1, left: 0, duration: 0.7, delay: 0.3 }
+      );
+    }
+
+    heroTl
+      .fromTo(
+        "#hero img.car",
+        { opacity: 0, left: 20, transform: "scale(0.95)" },
+        {
+          opacity: 1,
+          left: 0,
+          transform: "scale(1)",
+          transformOrigin: "right top",
+          duration: 1,
+        }
+      )
+      .fromTo(
+        "#hero h1 span.future",
+        { opacity: 0, left: 30 },
+        { opacity: 1, left: 0, duration: 0.6 },
+        "<=+0.35"
+      )
+      .fromTo(
+        "#hero h1 span.egolf",
+        { opacity: 0, left: 30 },
+        { opacity: 1, left: 0, duration: 0.6 },
+        "<=+0.2"
+      )
+      .fromTo(
+        "#hero h1 span.future img.line-1",
+        { opacity: 0, left: "17%" },
+        { opacity: 1, left: "10%", duration: 0.6 },
+        "<=+0.1"
+      )
+      .to(
+        "#hero h1 span.future img.line-1",
+        {
+          animation: "17.9s infinite linear  slide",
+        },
+        "<="
+      )
+      .fromTo(
+        "#hero h1 span.future img.line-2",
+        { opacity: 0, left: "28%" },
+        { opacity: 1, left: "18%", duration: 0.6 },
+        "<=+0.1"
+      )
+      .to("#hero h1 span.future img.line-2", { animation: "16s infinite linear  slide" }, "<=")
+      .fromTo(
+        "#hero h1 span.egolf img.line-3",
+        { opacity: 0, left: "102%" },
+        { opacity: 1, left: "75%", duration: 0.6 },
+        "<=+0.2"
+      )
+      .to("#hero h1 span.egolf img.line-3", { animation: "15.7s infinite linear  slide" }, "<=")
+      .fromTo(
+        "#hero div.logo-line",
+        { opacity: 0, top: -10 },
+        { opacity: 1, top: 0, duration: 0.6 },
+        "<=+0.1"
+      );
   }
-
-  heroTl
-    .fromTo(
-      "#hero img.car",
-      { opacity: 0, left: 20, transform: "scale(0.95)" },
-      {
-        opacity: 1,
-        left: 0,
-        transform: "scale(1)",
-        transformOrigin: "right top",
-        duration: 1,
-      }
-    )
-    .fromTo(
-      "#hero h1 span.future",
-      { opacity: 0, left: 30 },
-      { opacity: 1, left: 0, duration: 0.6 },
-      "<=+0.35"
-    )
-    .fromTo(
-      "#hero h1 span.egolf",
-      { opacity: 0, left: 30 },
-      { opacity: 1, left: 0, duration: 0.6 },
-      "<=+0.2"
-    )
-    .fromTo(
-      "#hero h1 span.future img.line-1",
-      { opacity: 0, left: "17%" },
-      { opacity: 1, left: "10%", duration: 0.6 },
-      "<=+0.1"
-    )
-    .to(
-      "#hero h1 span.future img.line-1",
-      {
-        animation: "17.9s infinite linear  slide",
-      },
-      "<="
-    )
-    .fromTo(
-      "#hero h1 span.future img.line-2",
-      { opacity: 0, left: "28%" },
-      { opacity: 1, left: "18%", duration: 0.6 },
-      "<=+0.1"
-    )
-    .to("#hero h1 span.future img.line-2", { animation: "16s infinite linear  slide" }, "<=")
-    .fromTo(
-      "#hero h1 span.egolf img.line-3",
-      { opacity: 0, left: "102%" },
-      { opacity: 1, left: "75%", duration: 0.6 },
-      "<=+0.2"
-    )
-    .to("#hero h1 span.egolf img.line-3", { animation: "15.7s infinite linear  slide" }, "<=")
-    .fromTo(
-      "#hero div.logo-line",
-      { opacity: 0, top: -10 },
-      { opacity: 1, top: 0, duration: 0.6 },
-      "<=+0.1"
-    );
 }
 
 function startNavbarAnimation() {
@@ -160,71 +173,76 @@ function startNavbarAnimation() {
 }
 
 function startQuoteSectionAnimation() {
-  let quoteSectionTl = gsap.timeline();
+  let images = Array.from(document.querySelectorAll("#quote-section img"));
+  Promise.all(images.map(loadImage)).then(executeAnimations);
 
-  let quoteSectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          switch (entry.target.localName) {
-            case "p":
-              quoteSectionTl.fromTo(
-                entry.target,
-                { opacity: 0, top: -5 },
-                { opacity: 1, top: 0, duration: 0.6 }
-              );
-              break;
-            case "img":
-              if (innerWidth >= 1024) {
-                quoteSectionTl.fromTo(
-                  entry.target,
-                  { opacity: 0, right: 10, top: -5 },
-                  { opacity: 1, right: 0, top: 0, duration: 0.8 },
-                  "<=+0.2"
-                );
-              } else {
-                quoteSectionTl.fromTo(
-                  entry.target,
-                  { opacity: 0, right: 10, top: -5 },
-                  { opacity: 1, right: 0, top: 0, duration: 0.8 }
-                );
-              }
+  function executeAnimations() {
+    let quoteSectionTl = gsap.timeline();
 
-              break;
-            case "li":
-              if (innerWidth >= 1200) {
+    let quoteSectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            switch (entry.target.localName) {
+              case "p":
                 quoteSectionTl.fromTo(
                   entry.target,
-                  { opacity: 0, top: -10 },
-                  { opacity: 1, top: 0, duration: 0.8 },
-                  "<=+0.2"
+                  { opacity: 0, top: -5 },
+                  { opacity: 1, top: 0, duration: 0.6 }
                 );
-              } else {
-                quoteSectionTl.fromTo(
-                  entry.target,
-                  { opacity: 0, top: -10 },
-                  { opacity: 1, top: 0, duration: 0.4 }
-                );
-              }
-              break;
+                break;
+              case "img":
+                if (innerWidth >= 1024) {
+                  quoteSectionTl.fromTo(
+                    entry.target,
+                    { opacity: 0, right: 10, top: -5 },
+                    { opacity: 1, right: 0, top: 0, duration: 0.8 },
+                    "<=+0.2"
+                  );
+                } else {
+                  quoteSectionTl.fromTo(
+                    entry.target,
+                    { opacity: 0, right: 10, top: -5 },
+                    { opacity: 1, right: 0, top: 0, duration: 0.8 }
+                  );
+                }
+
+                break;
+              case "li":
+                if (innerWidth >= 1200) {
+                  quoteSectionTl.fromTo(
+                    entry.target,
+                    { opacity: 0, top: -10 },
+                    { opacity: 1, top: 0, duration: 0.8 },
+                    "<=+0.2"
+                  );
+                } else {
+                  quoteSectionTl.fromTo(
+                    entry.target,
+                    { opacity: 0, top: -10 },
+                    { opacity: 1, top: 0, duration: 0.4 }
+                  );
+                }
+                break;
+            }
+
+            quoteSectionObserver.unobserve(entry.target);
           }
+        });
+      },
+      {
+        rootMargin: "-40% 0% -30% 0%",
+      }
+    );
 
-          quoteSectionObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      rootMargin: "-40% 0% -30% 0%",
-    }
-  );
-
-  quoteSectionObserver.observe(document.querySelector("#quote-section div.quote p"));
-  quoteSectionObserver.observe(
-    document.querySelector("#quote-section div.quote div.img-wrapper img")
-  );
-  document.querySelectorAll("#quote-section ul li").forEach((li) => {
-    quoteSectionObserver.observe(li);
-  });
+    quoteSectionObserver.observe(document.querySelector("#quote-section div.quote p"));
+    quoteSectionObserver.observe(
+      document.querySelector("#quote-section div.quote div.img-wrapper img")
+    );
+    document.querySelectorAll("#quote-section ul li").forEach((li) => {
+      quoteSectionObserver.observe(li);
+    });
+  }
 }
 
 function startElectrifyingSectionAnimation() {
@@ -281,365 +299,386 @@ function startTrySectionAnimation() {
 }
 
 function startGreenerSectionAnimation() {
-  sectionHeaderAnimation(document.querySelector("#greener-section header"));
+  let images = Array.from(document.querySelectorAll("#greener-section img"));
+  Promise.all(images.map(loadImage)).then(executeAnimations);
 
-  let whySectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          let whySectionTl = gsap.timeline();
+  function executeAnimations() {
+    sectionHeaderAnimation(document.querySelector("#greener-section header"));
 
-          switch (entry.target.localName) {
-            case "h3":
-              whySectionTl.fromTo(
-                entry.target,
-                { opacity: 0 },
-                { opacity: 1, duration: 0.4, delay: 0.3 }
-              );
-              break;
-
-            case "img":
-              if (innerWidth >= 1024) {
-                whySectionTl.fromTo(
-                  entry.target,
-                  { opacity: 0, scale: 0.8 },
-                  { opacity: 1, scale: 1, duration: 0.8, delay: 0.7 }
-                );
-              } else {
-                whySectionTl.fromTo(
-                  entry.target,
-                  { opacity: 0, scale: 0.8 },
-                  { opacity: 1, scale: 1, duration: 0.8 }
-                );
-              }
-              break;
-            case "ul":
-              startListAnimations();
-              break;
-          }
-
-          whySectionObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      rootMargin: "-20% 0% -40% 0%",
-    }
-  );
-
-  whySectionObserver.observe(document.querySelector("#greener-section #why-electric h3"));
-  whySectionObserver.observe(document.querySelector("#greener-section #why-electric img"));
-  whySectionObserver.observe(document.querySelector("#greener-section #why-electric ul"));
-
-  function startListAnimations() {
-    let whySectionListObserver = new IntersectionObserver(
+    let whySectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            let li = entry.target;
+            let whySectionTl = gsap.timeline();
 
-            let liTl = gsap.timeline();
+            switch (entry.target.localName) {
+              case "h3":
+                whySectionTl.fromTo(
+                  entry.target,
+                  { opacity: 0 },
+                  { opacity: 1, duration: 0.4, delay: 0.3 }
+                );
+                break;
 
-            liTl
-              .fromTo(
-                li.querySelector("span.number"),
-                { opacity: 0, scale: 0.8 },
-                { opacity: 1, scale: 1, duration: 0.5 }
-              )
-              .fromTo(
-                li.querySelector("span.text-wrapper"),
-                { opacity: 0, left: 10 },
-                { opacity: 1, left: 0, duration: 0.5 },
-                "<=+0.2"
-              );
+              case "img":
+                if (innerWidth >= 1024) {
+                  whySectionTl.fromTo(
+                    entry.target,
+                    { opacity: 0, scale: 0.8 },
+                    { opacity: 1, scale: 1, duration: 0.8, delay: 0.7 }
+                  );
+                } else {
+                  whySectionTl.fromTo(
+                    entry.target,
+                    { opacity: 0, scale: 0.8 },
+                    { opacity: 1, scale: 1, duration: 0.8 }
+                  );
+                }
+                break;
+              case "ul":
+                startListAnimations();
+                break;
+            }
 
-            whySectionListObserver.unobserve(entry.target);
+            whySectionObserver.unobserve(entry.target);
           }
         });
       },
       {
-        rootMargin: "-20% 0% -30% 0%",
+        rootMargin: "-20% 0% -40% 0%",
       }
     );
 
-    document.querySelectorAll("#greener-section #why-electric ul li").forEach((li) => {
-      whySectionListObserver.observe(li);
-    });
-  }
+    whySectionObserver.observe(document.querySelector("#greener-section #why-electric h3"));
+    whySectionObserver.observe(document.querySelector("#greener-section #why-electric img"));
+    whySectionObserver.observe(document.querySelector("#greener-section #why-electric ul"));
 
-  let simulateSectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          switch (entry.target.localName) {
-            case "h3":
-              gsap.fromTo(entry.target, { opacity: 0 }, { opacity: 1 });
-              break;
+    function startListAnimations() {
+      let whySectionListObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              let li = entry.target;
 
-            case "div":
-              gridCardsAnimation(
-                document.querySelectorAll(
-                  "#greener-section #simulate-section div.grid-wrapper article"
+              let liTl = gsap.timeline();
+
+              liTl
+                .fromTo(
+                  li.querySelector("span.number"),
+                  { opacity: 0, scale: 0.8 },
+                  { opacity: 1, scale: 1, duration: 0.5 }
                 )
-              );
-              break;
-          }
-          simulateSectionObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      rootMargin: "-20% 0% -50% 0%",
-    }
-  );
+                .fromTo(
+                  li.querySelector("span.text-wrapper"),
+                  { opacity: 0, left: 10 },
+                  { opacity: 1, left: 0, duration: 0.5 },
+                  "<=+0.2"
+                );
 
-  simulateSectionObserver.observe(document.querySelector("#greener-section #simulate-section h3"));
-  simulateSectionObserver.observe(
-    document.querySelector("#greener-section #simulate-section div.grid-wrapper")
-  );
+              whySectionListObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          rootMargin: "-20% 0% -30% 0%",
+        }
+      );
+
+      document.querySelectorAll("#greener-section #why-electric ul li").forEach((li) => {
+        whySectionListObserver.observe(li);
+      });
+    }
+
+    let simulateSectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            switch (entry.target.localName) {
+              case "h3":
+                gsap.fromTo(entry.target, { opacity: 0 }, { opacity: 1 });
+                break;
+
+              case "div":
+                gridCardsAnimation(
+                  document.querySelectorAll(
+                    "#greener-section #simulate-section div.grid-wrapper article"
+                  )
+                );
+                break;
+            }
+            simulateSectionObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0% -50% 0%",
+      }
+    );
+
+    simulateSectionObserver.observe(
+      document.querySelector("#greener-section #simulate-section h3")
+    );
+    simulateSectionObserver.observe(
+      document.querySelector("#greener-section #simulate-section div.grid-wrapper")
+    );
+  }
 }
 
 function startChargingSectionAnimation() {
-  let chargingSectionTl = gsap.timeline();
+  let images = Array.from(document.querySelectorAll("#charging-section img"));
+  Promise.all(images.map(loadImage)).then(executeAnimations);
 
-  chargingSectionTl
-    .fromTo("#charging-section", { opacity: 0 }, { opacity: 1, duration: 0.6 })
-    .fromTo("#charging-section h2", { opacity: 0, top: -10 }, { opacity: 1, top: 0, duration: 0.6 })
-    .fromTo(
-      "#charging-section p",
-      { opacity: 0, top: -10 },
-      { opacity: 1, top: 0, duration: 0.6 },
-      "<=+0.3"
-    );
-  if (innerWidth >= 1024) {
-    chargingSectionTl.fromTo(
-      "#charging-section img",
-      { opacity: 0, right: 10, top: -10 },
-      { opacity: 1, right: 0, top: 0, duration: 0.6 },
-      "<=-0.3"
-    );
-  } else {
-    chargingSectionTl.fromTo(
-      "#charging-section img",
-      { opacity: 0, right: 10, top: 90 },
-      { opacity: 1, right: 0, top: 100, duration: 0.6 },
-      "<=-0.3"
-    );
+  function executeAnimations() {
+    let chargingSectionTl = gsap.timeline();
+
+    chargingSectionTl
+      .fromTo("#charging-section", { opacity: 0 }, { opacity: 1, duration: 0.6 })
+      .fromTo(
+        "#charging-section h2",
+        { opacity: 0, top: -10 },
+        { opacity: 1, top: 0, duration: 0.6 }
+      )
+      .fromTo(
+        "#charging-section p",
+        { opacity: 0, top: -10 },
+        { opacity: 1, top: 0, duration: 0.6 },
+        "<=+0.3"
+      );
+    if (innerWidth >= 1024) {
+      chargingSectionTl.fromTo(
+        "#charging-section img",
+        { opacity: 0, right: 10, top: -10 },
+        { opacity: 1, right: 0, top: 0, duration: 0.6 },
+        "<=-0.3"
+      );
+    } else {
+      chargingSectionTl.fromTo(
+        "#charging-section img",
+        { opacity: 0, right: 10, top: 90 },
+        { opacity: 1, right: 0, top: 100, duration: 0.6 },
+        "<=-0.3"
+      );
+    }
   }
 }
 
 function startHighSectionAnimation() {
-  sectionHeaderAnimation(document.querySelector("#high-spec-section header"));
+  let images = Array.from(document.querySelectorAll("#high-spec-section img"));
+  Promise.all(images.map(loadImage)).then(executeAnimations);
 
-  let highSectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          switch (entry.target.localName) {
-            case "p":
-              gsap.fromTo(
-                entry.target,
-                { opacity: 0, top: -10 },
-                { opacity: 1, top: 0, duration: 0.6, delay: 0.3 }
-              );
-              break;
-            case "h3":
-              gsap.fromTo(
-                entry.target,
-                { opacity: 0, top: -10 },
-                { opacity: 1, top: 0, duration: 0.6 }
-              );
-              break;
-            case "div":
-              startColorBlockAnimation();
-              break;
-          }
+  function executeAnimations() {
+    sectionHeaderAnimation(document.querySelector("#high-spec-section header"));
 
-          highSectionObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      rootMargin: "-20% 0% -50% 0%",
-    }
-  );
-
-  highSectionObserver.observe(document.querySelector("#high-spec-section p"));
-  highSectionObserver.observe(document.querySelector("#high-spec-section #change-section h3"));
-  highSectionObserver.observe(
-    document.querySelector("#high-spec-section #change-section .grid-wrapper")
-  );
-
-  let highAObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          gsap.fromTo(
-            entry.target,
-            { opacity: 0, top: -10 },
-            { opacity: 1, top: 0, duration: 0.6 }
-          );
-          highAObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      rootMargin: "-15% 0% -15% 0%",
-    }
-  );
-
-  highAObserver.observe(document.querySelector("#high-spec-section #change-section a"));
-
-  function startColorBlockAnimation() {
-    let colorBlockTl = gsap.timeline();
-    const sliderWrapper = document.querySelector(
-      "#high-spec-section #change-section .grid-wrapper .slider-block-wrapper"
-    );
-
-    colorBlockTl.fromTo(
-      "#high-spec-section #change-section .grid-wrapper img.base-car",
-      { opacity: 0, scale: 1.1 },
-      { opacity: 1, scale: 1, duration: 0.5 }
-    );
-
-    let sliderObserver = new IntersectionObserver(
+    let highSectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            colorBlockTl
-              .fromTo(
-                sliderWrapper.querySelector("p span.start"),
-                { opacity: 0 },
-                { opacity: 1, duration: 0.5 }
-              )
-              .fromTo(
-                sliderWrapper.querySelector("#slider-c1"),
-                { opacity: 0 },
-                { opacity: 1, duration: 0.5 },
-                "<="
-              )
-              .fromTo(
-                sliderWrapper.querySelector("#slider-cdrag"),
-                { opacity: 0 },
-                { opacity: 1, duration: 0.5 },
-                "<="
-              )
-              .fromTo(
-                sliderWrapper.querySelector("#slider-line"),
-                { clipPath: "polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%)" },
-                {
-                  clipPath: "polygon(0% 0%, 100% 0%, 100% 120%, 0% 120%)",
-                  transition: "clip-path",
-                  duration: 3.2,
-                }
-              )
-              .fromTo(
-                sliderWrapper.querySelector("#slider-line-light"),
-                { clipPath: "polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%)" },
-                {
-                  opacity: 0.4,
-                  clipPath: "polygon(0% 0%, 100% 0%, 100% 120%, 0% 120%)",
-                  transition: "clip-path",
-                  duration: 3.2,
-                },
-                "<="
-              )
-              .fromTo(
-                "#silver-color-car",
-                { opacity: 0 },
-                {
-                  opacity: 1,
-                  duration: 0.2,
-                },
-                "<=-0.1"
-              )
-              .fromTo(
-                "#grey-color-car",
-                { opacity: 0 },
-                {
-                  opacity: 1,
-                  duration: 0.2,
-                },
-                "<=0.6"
-              )
-              .fromTo(
-                "#urano-color-car",
-                { opacity: 0 },
-                {
-                  opacity: 1,
-                  duration: 0.2,
-                },
-                "<=0.7"
-              )
-              .to("#silver-color-car", { opacity: 0, duration: 0.2 }, "<=")
-              .fromTo(
-                "#black-color-car",
-                { opacity: 0 },
-                {
-                  opacity: 1,
-                  duration: 0.2,
-                },
-                "<=0.7"
-              )
-              .to("#grey-color-car", { opacity: 0, duration: 0.2 }, "<=")
-              .fromTo(
-                "#blue-color-car",
-                { opacity: 0 },
-                {
-                  opacity: 1,
-                  duration: 0.2,
-                },
-                "<=0.7"
-              )
-              .to("#urano-color-car", { opacity: 0, duration: 0.2 }, "<=")
-              .fromTo(
-                sliderWrapper.querySelector("p span.finish"),
-                { opacity: 0 },
-                { opacity: 1, duration: 0.7 },
-                ">="
-              )
-              .fromTo(
-                sliderWrapper.querySelector("#slider-cfilled"),
-                { opacity: 0 },
-                { opacity: 1, duration: 0.7 },
-                "<="
-              )
-              .fromTo(
-                sliderWrapper.querySelector("#slider-c2"),
-                { opacity: 0 },
-                { opacity: 1, duration: 0.1 },
-                ">=-0.1"
-              )
-              .to(sliderWrapper.querySelector("#slider-line"), {
-                opacity: 0,
-                duration: 0.5,
-                delay: 0.6,
-              })
-              .to(
-                sliderWrapper.querySelector("#slider-cfilled"),
-                { opacity: 0, duration: 0.5 },
-                "<="
-              )
-              .to("#black-color-car", { opacity: 0, duration: 0.2 }, "<=")
-              .to("#blue-color-car", { opacity: 0, duration: 0.2 }, "<=")
-              .to(sliderWrapper.querySelector("#slider-line"), {
-                clipPath: "polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%)",
-              })
-              .to(sliderWrapper.querySelector("#slider-line"), {
-                opacity: 1,
-                duration: 0.1,
-              });
+            switch (entry.target.localName) {
+              case "p":
+                gsap.fromTo(
+                  entry.target,
+                  { opacity: 0, top: -10 },
+                  { opacity: 1, top: 0, duration: 0.6, delay: 0.3 }
+                );
+                break;
+              case "h3":
+                gsap.fromTo(
+                  entry.target,
+                  { opacity: 0, top: -10 },
+                  { opacity: 1, top: 0, duration: 0.6 }
+                );
+                break;
+              case "div":
+                startColorBlockAnimation();
+                break;
+            }
 
-            sliderObserver.unobserve(entry.target);
+            highSectionObserver.unobserve(entry.target);
           }
         });
       },
       {
-        rootMargin: "-30% 0% -30% 0%",
+        rootMargin: "-20% 0% -50% 0%",
       }
     );
 
-    sliderObserver.observe(sliderWrapper);
+    highSectionObserver.observe(document.querySelector("#high-spec-section p"));
+    highSectionObserver.observe(document.querySelector("#high-spec-section #change-section h3"));
+    highSectionObserver.observe(
+      document.querySelector("#high-spec-section #change-section .grid-wrapper")
+    );
+
+    let highAObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.fromTo(
+              entry.target,
+              { opacity: 0, top: -10 },
+              { opacity: 1, top: 0, duration: 0.6 }
+            );
+            highAObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "-15% 0% -15% 0%",
+      }
+    );
+
+    highAObserver.observe(document.querySelector("#high-spec-section #change-section a"));
+
+    function startColorBlockAnimation() {
+      let colorBlockTl = gsap.timeline();
+      const sliderWrapper = document.querySelector(
+        "#high-spec-section #change-section .grid-wrapper .slider-block-wrapper"
+      );
+
+      colorBlockTl.fromTo(
+        "#high-spec-section #change-section .grid-wrapper img.base-car",
+        { opacity: 0, scale: 1.1 },
+        { opacity: 1, scale: 1, duration: 0.5 }
+      );
+
+      let sliderObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              colorBlockTl
+                .fromTo(
+                  sliderWrapper.querySelector("p span.start"),
+                  { opacity: 0 },
+                  { opacity: 1, duration: 0.5 }
+                )
+                .fromTo(
+                  sliderWrapper.querySelector("#slider-c1"),
+                  { opacity: 0 },
+                  { opacity: 1, duration: 0.5 },
+                  "<="
+                )
+                .fromTo(
+                  sliderWrapper.querySelector("#slider-cdrag"),
+                  { opacity: 0 },
+                  { opacity: 1, duration: 0.5 },
+                  "<="
+                )
+                .fromTo(
+                  sliderWrapper.querySelector("#slider-line"),
+                  { clipPath: "polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%)" },
+                  {
+                    clipPath: "polygon(0% 0%, 100% 0%, 100% 120%, 0% 120%)",
+                    transition: "clip-path",
+                    duration: 3.2,
+                  }
+                )
+                .fromTo(
+                  sliderWrapper.querySelector("#slider-line-light"),
+                  { clipPath: "polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%)" },
+                  {
+                    opacity: 0.4,
+                    clipPath: "polygon(0% 0%, 100% 0%, 100% 120%, 0% 120%)",
+                    transition: "clip-path",
+                    duration: 3.2,
+                  },
+                  "<="
+                )
+                .fromTo(
+                  "#silver-color-car",
+                  { opacity: 0 },
+                  {
+                    opacity: 1,
+                    duration: 0.2,
+                  },
+                  "<=-0.1"
+                )
+                .fromTo(
+                  "#grey-color-car",
+                  { opacity: 0 },
+                  {
+                    opacity: 1,
+                    duration: 0.2,
+                  },
+                  "<=0.6"
+                )
+                .fromTo(
+                  "#urano-color-car",
+                  { opacity: 0 },
+                  {
+                    opacity: 1,
+                    duration: 0.2,
+                  },
+                  "<=0.7"
+                )
+                .to("#silver-color-car", { opacity: 0, duration: 0.2 }, "<=")
+                .fromTo(
+                  "#black-color-car",
+                  { opacity: 0 },
+                  {
+                    opacity: 1,
+                    duration: 0.2,
+                  },
+                  "<=0.7"
+                )
+                .to("#grey-color-car", { opacity: 0, duration: 0.2 }, "<=")
+                .fromTo(
+                  "#blue-color-car",
+                  { opacity: 0 },
+                  {
+                    opacity: 1,
+                    duration: 0.2,
+                  },
+                  "<=0.7"
+                )
+                .to("#urano-color-car", { opacity: 0, duration: 0.2 }, "<=")
+                .fromTo(
+                  sliderWrapper.querySelector("p span.finish"),
+                  { opacity: 0 },
+                  { opacity: 1, duration: 0.7 },
+                  ">="
+                )
+                .fromTo(
+                  sliderWrapper.querySelector("#slider-cfilled"),
+                  { opacity: 0 },
+                  { opacity: 1, duration: 0.7 },
+                  "<="
+                )
+                .fromTo(
+                  sliderWrapper.querySelector("#slider-c2"),
+                  { opacity: 0 },
+                  { opacity: 1, duration: 0.1 },
+                  ">=-0.1"
+                )
+                .to(sliderWrapper.querySelector("#slider-line"), {
+                  opacity: 0,
+                  duration: 0.5,
+                  delay: 0.6,
+                })
+                .to(
+                  sliderWrapper.querySelector("#slider-cfilled"),
+                  { opacity: 0, duration: 0.5 },
+                  "<="
+                )
+                .to("#black-color-car", { opacity: 0, duration: 0.2 }, "<=")
+                .to("#blue-color-car", { opacity: 0, duration: 0.2 }, "<=")
+                .to(sliderWrapper.querySelector("#slider-line"), {
+                  clipPath: "polygon(0% 0%, 0% 0%, 0% 120%, 0% 120%)",
+                })
+                .to(sliderWrapper.querySelector("#slider-line"), {
+                  opacity: 1,
+                  duration: 0.1,
+                });
+
+              sliderObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          rootMargin: "-30% 0% -30% 0%",
+        }
+      );
+
+      sliderObserver.observe(sliderWrapper);
+    }
   }
 }
 
@@ -657,88 +696,95 @@ function startAskSectionAnimation() {
 }
 
 function startMeetSectionAnimation() {
-  sectionHeaderAnimation(document.querySelector("#meet-section header"));
+  let images = Array.from(document.querySelectorAll("#meet-section img"));
+  Promise.all(images.map(loadImage)).then(executeAnimations);
 
-  let retailerSectionTl = gsap.timeline();
+  function executeAnimations() {
+    sectionHeaderAnimation(document.querySelector("#meet-section header"));
 
-  let retailerSectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          retailerSectionTl
-            .fromTo(
-              "#retailer-section p",
-              { opacity: 0, top: -10 },
-              { opacity: 1, top: 0, duration: 0.6 }
-            )
-            .fromTo(
-              "#retailer-section a",
-              { opacity: 0, top: -10 },
-              { opacity: 1, top: 0, duration: 0.6 },
-              "<=+0.3"
+    let retailerSectionTl = gsap.timeline();
+
+    let retailerSectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            retailerSectionTl
+              .fromTo(
+                "#retailer-section p",
+                { opacity: 0, top: -10 },
+                { opacity: 1, top: 0, duration: 0.6 }
+              )
+              .fromTo(
+                "#retailer-section a",
+                { opacity: 0, top: -10 },
+                { opacity: 1, top: 0, duration: 0.6 },
+                "<=+0.3"
+              );
+
+            retailerSectionObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "-30% 0% -50% 0%",
+      }
+    );
+
+    retailerSectionObserver.observe(document.querySelector("#retailer-section .text-wrapper"));
+
+    let imgRoot = "-20% 0% -20% 0%";
+    if (innerWidth >= 1024) {
+      imgRoot = "-20% 0% -50% 0%";
+    }
+
+    let retailerImgObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.fromTo(
+              entry.target,
+              { opacity: 0, left: 10 },
+              { opacity: 1, left: 0, duration: 0.6 }
             );
 
-          retailerSectionObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      rootMargin: "-30% 0% -50% 0%",
-    }
-  );
-
-  retailerSectionObserver.observe(document.querySelector("#retailer-section .text-wrapper"));
-
-  let imgRoot = "-20% 0% -20% 0%";
-  if (innerWidth >= 1024) {
-    imgRoot = "-20% 0% -50% 0%";
-  }
-
-  let retailerImgObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          gsap.fromTo(
-            entry.target,
-            { opacity: 0, left: 10 },
-            { opacity: 1, left: 0, duration: 0.6 }
-          );
-
-          retailerImgObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      rootMargin: imgRoot,
-    }
-  );
-
-  retailerImgObserver.observe(document.querySelector("#retailer-section img"));
-
-  let toolsSectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          switch (entry.target.localName) {
-            case "h3":
-              gsap.fromTo(entry.target, { opacity: 0 }, { opacity: 1 });
-              break;
-            case "div":
-              gridCardsAnimation(document.querySelectorAll("#tools-section div.grid-wrapper div"));
-              break;
+            retailerImgObserver.unobserve(entry.target);
           }
+        });
+      },
+      {
+        rootMargin: imgRoot,
+      }
+    );
 
-          toolsSectionObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      rootMargin: "-20% 0% -50% 0%",
-    }
-  );
+    retailerImgObserver.observe(document.querySelector("#retailer-section img"));
 
-  toolsSectionObserver.observe(document.querySelector("#tools-section h3"));
-  toolsSectionObserver.observe(document.querySelector("#tools-section div.grid-wrapper"));
+    let toolsSectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            switch (entry.target.localName) {
+              case "h3":
+                gsap.fromTo(entry.target, { opacity: 0 }, { opacity: 1 });
+                break;
+              case "div":
+                gridCardsAnimation(
+                  document.querySelectorAll("#tools-section div.grid-wrapper div")
+                );
+                break;
+            }
+
+            toolsSectionObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0% -50% 0%",
+      }
+    );
+
+    toolsSectionObserver.observe(document.querySelector("#tools-section h3"));
+    toolsSectionObserver.observe(document.querySelector("#tools-section div.grid-wrapper"));
+  }
 }
 
 function startFooterAnimation() {
@@ -925,7 +971,6 @@ const colorCar = document.querySelectorAll(".color-car");
 
 input.addEventListener("input", (e) => {
   let perc = e.target.value;
-  console.log(perc);
   dragCircle.style.left = `${perc}%`;
 
   if (perc < 10) {
