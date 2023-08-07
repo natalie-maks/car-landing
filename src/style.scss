@@ -344,14 +344,14 @@ section#quote-section {
       opacity: 0;
 
       &:before {
-        content: url("/media/quote-mark-left.svg");
+        content: url("/media/decor-elements/quote-mark-left.svg");
         position: absolute;
         top: -40px;
         left: -20px;
       }
 
       &:after {
-        content: url("/media/quote-mark-right.svg");
+        content: url("/media/decor-elements/quote-mark-right.svg");
         position: absolute;
         bottom: -56px;
         right: -20px;
@@ -455,14 +455,14 @@ section#london-section {
     }
 
     &:before {
-      content: url("/media/quote-mark-white-left.svg");
+      content: url("/media/decor-elements/quote-mark-white-left.svg");
       position: absolute;
       top: -56px;
       left: -20px;
     }
 
     &:after {
-      content: url("/media/quote-mark-white-right.svg");
+      content: url("/media/decor-elements/quote-mark-white-right.svg");
       position: absolute;
       bottom: -56px;
       right: -20px;
